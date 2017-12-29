@@ -1,0 +1,7 @@
+services:
+    bitbag_sylius_przelewy24_plugin.gateway_factory.przelewy24:
+        class: Payum\Core\Bridge\Symfony\Builder\GatewayFactoryBuilder
+        arguments:
+            -  BitBag\SyliusPrzelewy24Plugin\BitBag\Przelewy24GatewayFactory
+        tags:
+            - { name: payum.gateway_factory_builder, factory: przelewy24 }
