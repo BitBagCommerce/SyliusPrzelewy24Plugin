@@ -1,1 +1,12 @@
 services:
+    bitbag_sylius_przelewy24_plugin.context.setup.przelewy24:
+        class: Tests\BitBag\SyliusPrzelewy24Plugin\Behat\Context\Setup\Przelewy24Context
+        arguments:
+            - "@sylius.behat.shared_storage"
+            - "@__symfony__.sylius.repository.payment_method"
+            - "@__symfony__.sylius.fixture.example_factory.payment_method"
+            - "@__symfony__.sylius.factory.payment_method_translation"
+            - "@__symfony__.sylius.manager.payment_method"
+
+        tags:
+            - { name: fob.context_service }

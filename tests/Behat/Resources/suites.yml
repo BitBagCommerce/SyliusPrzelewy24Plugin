@@ -1,1 +1,3 @@
-imports: ~
+imports:
+    - suites/ui/managing_payment_method_przelewy24.yml
+    - suites/ui/paying_with_przelewy24_for_order.yml
