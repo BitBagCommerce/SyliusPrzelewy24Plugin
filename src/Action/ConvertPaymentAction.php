@@ -14,11 +14,30 @@ namespace BitBag\SyliusPrzelewy24Plugin\Action;
 
 use Payum\Core\Action\ActionInterface;
 use Payum\Core\Exception\RequestNotSupportedException;
+use Payum\Core\GatewayAwareTrait;
 use Payum\Core\Request\Convert;
+use Sylius\Bundle\PayumBundle\Provider\PaymentDescriptionProviderInterface;
+use Sylius\Component\Core\Model\OrderInterface;
 use Sylius\Component\Core\Model\PaymentInterface;
+use Sylius\Component\Core\Model\OrderItemInterface;
 
 final class ConvertPaymentAction implements ActionInterface
 {
+    use GatewayAwareTrait;
+
+    /**
+     * @var PaymentDescriptionProviderInterface
+     */
+    private $paymentDescriptionProvider;
+
+    /**
+     * @param PaymentDescriptionProviderInterface $paymentDescriptionProvider
+     */
+    public function __construct(PaymentDescriptionProviderInterface $paymentDescriptionProvider)
+    {
+        $this->paymentDescriptionProvider = $paymentDescriptionProvider;
+    }
+
     /**
      * {@inheritDoc}
      *
@@ -28,7 +47,19 @@ final class ConvertPaymentAction implements ActionInterface
     {
         RequestNotSupportedException::assertSupports($this, $request);
 
-        // TODO: Implement execute() method.
+        /** @var PaymentInterface $payment */
+        $payment = $request->getSource();
+
+        /** @var OrderInterface $order */
+        $order = $payment->getOrder();
+
+        $paymentData = $this->getPaymentData($payment);
+        $customerData = $this->getCustomerData($order);
+        $shoppingList = $this->getShoppingList($order);
+
+        $details = array_merge($paymentData, $customerData, $shoppingList);
+
+        $request->setResult($details);
     }
 
     /**
@@ -41,5 +72,71 @@ final class ConvertPaymentAction implements ActionInterface
             $request->getSource() instanceof PaymentInterface &&
             $request->getTo() === 'array'
         ;
+    }
+
+    /**
+     * @param PaymentInterface $payment
+     *
+     * @return array
+     */
+    private function getPaymentData(PaymentInterface $payment): array
+    {
+        $paymentData = [];
+
+        $paymentData['p24_amount'] = $payment->getAmount();
+        $paymentData['p24_currency'] = $payment->getCurrencyCode();
+        $paymentData['p24_description'] = $this->paymentDescriptionProvider->getPaymentDescription($payment);
+
+        return $paymentData;
+    }
+
+    /**
+     * @param OrderInterface $order
+     *
+     * @return array
+     */
+    private function getCustomerData(OrderInterface $order): array
+    {
+        $customerData = [];
+
+        $customerData['p24_language'] = $order->getLocaleCode();
+
+        if (null !== $customer = $order->getCustomer()) {
+            $customerData['p24_email'] = $customer->getEmail();
+        }
+
+        if (null !== $address = $order->getShippingAddress()) {
+            $customerData['p24_adress'] = $address->getStreet();
+            $customerData['p24_zip'] = $address->getPostcode();
+            $customerData['p24_country'] = $address->getCountryCode();
+            $customerData['p24_phone'] = $address->getPhoneNumber();
+            $customerData['p24_city'] = $address->getCity();
+            $customerData['p24_client'] = $address->getFullName();
+        }
+
+        return $customerData;
+    }
+
+    /**
+     * @param OrderInterface $order
+     *
+     * @return array
+     */
+    private function getShoppingList(OrderInterface $order): array
+    {
+        $shoppingList = [];
+
+        $index = 1;
+
+        /** @var OrderItemInterface $item */
+        foreach ($order->getItems() as $item) {
+            $shoppingList['p24_name_' . $index] = $item->getProduct()->getName();
+            $shoppingList['p24_quantity_' . $index] = $item->getQuantity();
+            $shoppingList['p24_price_' . $index] = $item->getUnitPrice();
+
+            $index++;
+        }
+
+        return $shoppingList;
     }
 }

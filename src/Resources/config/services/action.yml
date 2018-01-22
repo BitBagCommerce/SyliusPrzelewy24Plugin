@@ -1,20 +1,28 @@
 services:
-    bitbag_sylius_przelewy24_plugin.payum_action.capture:
+    bitbag_sylius_przelewy24_plugin.action.capture:
         class: BitBag\SyliusPrzelewy24Plugin\Action\CaptureAction
+        arguments:
+            - "@bitbag_sylius_przelewy24_plugin.bridge.przelewy24"
         tags:
             - { name: payum.action, factory: przelewy24, alias: payum.action.capture }
 
-    bitbag_sylius_przelewy24_plugin.payum_action.notify:
+    bitbag_sylius_przelewy24_plugin.action.notify:
         class: BitBag\SyliusPrzelewy24Plugin\Action\NotifyAction
+        arguments:
+            - "@bitbag_sylius_przelewy24_plugin.bridge.przelewy24"
         tags:
             - { name: payum.action, factory: przelewy24, alias: payum.action.notify }
 
-    bitbag_sylius_przelewy24_plugin.payum_action.status:
+    bitbag_sylius_przelewy24_plugin.action.status:
         class: BitBag\SyliusPrzelewy24Plugin\Action\StatusAction
+        arguments:
+            - "@bitbag_sylius_przelewy24_plugin.bridge.przelewy24"
         tags:
             - { name: payum.action, factory: przelewy24, alias: payum.action.status }
 
-    bitbag_sylius_przelewy24_plugin.payum_action.convert_payment:
+    bitbag_sylius_przelewy24_plugin.action.convert_payment:
         class: BitBag\SyliusPrzelewy24Plugin\Action\ConvertPaymentAction
+        arguments:
+            - "@sylius.payment_description_provider"
         tags:
             - { name: payum.action, factory: przelewy24, alias: payum.action.convert_payment }

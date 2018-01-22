@@ -1,0 +1,2 @@
+imports:
+    - { resource: "external/przelewy24_checkout.yml" }

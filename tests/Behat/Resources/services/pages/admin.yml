@@ -1,1 +1,2 @@
-imports: ~
+imports:
+    - { resource: "admin/payment_method.yml" }
