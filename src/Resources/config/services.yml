@@ -2,3 +2,4 @@ imports:
     - { resource: "services/form.yml" }
     - { resource: "services/gateway_factory.yml" }
     - { resource: "services/action.yml" }
+    - { resource: "services/bridge.yml" }

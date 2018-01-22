@@ -2,5 +2,5 @@ services:
     bitbag_sylius_przelewy24_plugin.form.type.przelewy24_gateway_configuration:
         class: BitBag\SyliusPrzelewy24Plugin\Form\Type\Przelewy24GatewayConfigurationType
         tags:
-            - { name: sylius.gateway_configuration_type, type: przelewy24, label: bitbag_sylius_przelewy24_plugin.ui.ayden_gateway_label }
+            - { name: sylius.gateway_configuration_type, type: przelewy24, label: bitbag_sylius_przelewy24_plugin.ui.przelewy24_gateway_label }
             - { name: form.type }
