@@ -1,22 +1,22 @@
 <h1 align="center">
     <a href="http://bitbag.shop" target="_blank">
-        <img src="https://raw.githubusercontent.com/bitbager/BitBagCommerceAssets/master/SyliusAdyenPlugin.png" />
+        <img src="https://raw.githubusercontent.com/bitbager/BitBagCommerceAssets/master/SyliusPrzelewy24PluginLogo.png" />
     </a>
     <br />
-    <a href="https://packagist.org/packages/bitbag/adyen-plugin" title="License" target="_blank">
-        <img src="https://img.shields.io/packagist/l/bitbag/adyen-plugin.svg" />
+    <a href="https://packagist.org/packages/bitbag/przelewy24-plugin" title="License" target="_blank">
+        <img src="https://img.shields.io/packagist/l/bitbag/przelewy24-plugin.svg" />
     </a>
-    <a href="https://packagist.org/packages/bitbag/adyen-plugin" title="Version" target="_blank">
-        <img src="https://img.shields.io/packagist/v/bitbag/adyen-plugin.svg" />
+    <a href="https://packagist.org/packages/bitbag/przelewy24-plugin" title="Version" target="_blank">
+        <img src="https://img.shields.io/packagist/v/bitbag/przelewy24-plugin.svg" />
     </a>
-    <a href="http://travis-ci.org/BitBagCommerce/SyliusAdyenPlugin" title="Build status" target="_blank">
-        <img src="https://img.shields.io/travis/BitBagCommerce/SyliusAdyenPlugin/master.svg" />
+    <a href="http://travis-ci.org/BitBagCommerce/SyliusPrzelewy24Plugin" title="Build status" target="_blank">
+        <img src="https://img.shields.io/travis/BitBagCommerce/SyliusPrzelewy24Plugin/master.svg" />
     </a>
-    <a href="https://scrutinizer-ci.com/g/BitBagCommerce/SyliusAdyenPlugin/" title="Scrutinizer" target="_blank">
-        <img src="https://img.shields.io/scrutinizer/g/BitBagCommerce/SyliusAdyenPlugin.svg" />
+    <a href="https://scrutinizer-ci.com/g/BitBagCommerce/SyliusPrzelewy24Plugin/" title="Scrutinizer" target="_blank">
+        <img src="https://img.shields.io/scrutinizer/g/BitBagCommerce/SyliusPrzelewy24Plugin.svg" />
     </a>
-    <a href="https://packagist.org/packages/bitbag/adyen-plugin" title="Total Downloads" target="_blank">
-        <img src="https://poser.pugx.org/bitbag/adyen-plugin/downloads" />
+    <a href="https://packagist.org/packages/bitbag/przelewy24-plugin" title="Total Downloads" target="_blank">
+        <img src="https://poser.pugx.org/bitbag/przelewy24-plugin/downloads" />
     </a>
 </h1>
 
