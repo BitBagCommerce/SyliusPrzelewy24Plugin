@@ -1,48 +1,47 @@
-<p align="center">
-    <a href="http://sylius.org" target="_blank">
-        <img src="http://demo.sylius.org/assets/shop/img/logo.png" />
+<h1 align="center">
+    <a href="http://bitbag.shop" target="_blank">
+        <img src="https://raw.githubusercontent.com/bitbager/BitBagCommerceAssets/master/SyliusAdyenPlugin.png" />
     </a>
-</p>
-<h1 align="center">Plugin Skeleton</h1>
-<p align="center">
-    <a href="https://packagist.org/packages/sylius/plugin-skeleton" title="License">
-        <img src="https://img.shields.io/packagist/l/sylius/plugin-skeleton.svg" />
+    <br />
+    <a href="https://packagist.org/packages/bitbag/adyen-plugin" title="License" target="_blank">
+        <img src="https://img.shields.io/packagist/l/bitbag/adyen-plugin.svg" />
     </a>
-    <a href="https://packagist.org/packages/sylius/plugin-skeleton" title="Version">
-        <img src="https://img.shields.io/packagist/v/sylius/plugin-skeleton.svg" />
+    <a href="https://packagist.org/packages/bitbag/adyen-plugin" title="Version" target="_blank">
+        <img src="https://img.shields.io/packagist/v/bitbag/adyen-plugin.svg" />
     </a>
-    <a href="http://travis-ci.org/Sylius/PluginSkeleton" title="Build status">
-        <img src="https://img.shields.io/travis/Sylius/PluginSkeleton/master.svg" />
+    <a href="http://travis-ci.org/BitBagCommerce/SyliusAdyenPlugin" title="Build status" target="_blank">
+        <img src="https://img.shields.io/travis/BitBagCommerce/SyliusAdyenPlugin/master.svg" />
     </a>
-    <a href="https://scrutinizer-ci.com/g/Sylius/PluginSkeleton/" title="Scrutinizer">
-        <img src="https://img.shields.io/scrutinizer/g/Sylius/PluginSkeleton.svg" />
+    <a href="https://scrutinizer-ci.com/g/BitBagCommerce/SyliusAdyenPlugin/" title="Scrutinizer" target="_blank">
+        <img src="https://img.shields.io/scrutinizer/g/BitBagCommerce/SyliusAdyenPlugin.svg" />
     </a>
-</p>
+    <a href="https://packagist.org/packages/bitbag/adyen-plugin" title="Total Downloads" target="_blank">
+        <img src="https://poser.pugx.org/bitbag/adyen-plugin/downloads" />
+    </a>
+</h1>
 
 ## Installation
 
-1. Run `composer create-project sylius/plugin-skeleton ProjectName`.
-
-2. From the plugin skeleton root directory, run the following commands:
-
-    ```bash
-    $ (cd tests/Application && yarn install)
-    $ (cd tests/Application && yarn run gulp)
-    $ (cd tests/Application && bin/console assets:install web -e test)
+```bash
+$ composer require bitbag/przelewy24-plugin
+```
     
-    $ (cd tests/Application && bin/console doctrine:database:create -e test)
-    $ (cd tests/Application && bin/console doctrine:schema:create -e test)
-    ```
+Add plugin dependencies to your AppKernel.php file:
+```php
+public function registerBundles()
+{
+    return array_merge(parent::registerBundles(), [
+        ...
+        
+        new \BitBag\SyliusPrzelewy24Plugin\SyliusPrzelewy24Plugin(),
+    ]);
+}
+```
+
 
 ## Usage
 
 ### Running plugin tests
-
-  - PHPUnit
-
-    ```bash
-    $ bin/phpunit
-    ```
 
   - PHPSpec
 
@@ -92,3 +91,7 @@
     $ (cd tests/Application && bin/console sylius:fixtures:load -e dev)
     $ (cd tests/Application && bin/console server:run -d web -e dev)
     ```
+    
+## Support
+
+Do you want us to customize this plugin for your specific needs? Write us an email on mikolaj.krol@bitbag.pl :computer:

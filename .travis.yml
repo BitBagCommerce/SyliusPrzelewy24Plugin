@@ -33,7 +33,7 @@ before_install:
     - sudo apt-get install -y -qq yarn=0.21.3-1
 
 install:
-    - composer update --prefer-dist
+    - composer install
     - (cd tests/Application && yarn install)
 
 before_script:
@@ -71,8 +71,8 @@ before_script:
     - (cd tests/Application && bin/console server:run 127.0.0.1:8080 -d web --env=test --quiet > /dev/null 2>&1 &)
 
 script:
-    - composer validate --strict
-
+    - bin/phpunit
+    - bin/phpspec run
     - bin/behat --strict -vvv --no-interaction || bin/behat --strict -vvv --no-interaction --rerun
 
 after_failure:
