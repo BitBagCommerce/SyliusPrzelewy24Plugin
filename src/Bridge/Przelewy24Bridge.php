@@ -135,7 +135,6 @@ final class Przelewy24Bridge implements Przelewy24BridgeInterface
             $posData['p24_order_id'],
             $posData['p24_amount'],
             $posData['p24_currency'],
-            $this->crcKey,
         ]);
 
         $posData['p24_sign'] = $sign;
