@@ -91,7 +91,7 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface, Generic
 
         $notifyToken = $this->tokenFactory->createNotifyToken($token->getGatewayName(), $token->getDetails());
 
-        $details['p24_url_return'] = $token->getAfterUrl();
+        $details['p24_url_return'] = $token->getTargetUrl();
         $details['p24_url_cancel'] = $token->getAfterUrl() . '&' . http_build_query(['status' => Przelewy24BridgeInterface::CANCELLED_STATUS]);
         $details['p24_wait_for_result'] = '1';
         $details['p24_url_status'] = $notifyToken->getTargetUrl();
