@@ -1,6 +1,7 @@
 services:
     bitbag_sylius_przelewy24_plugin.action.capture:
         class: BitBag\SyliusPrzelewy24Plugin\Action\CaptureAction
+        public: true
         arguments:
             - "@bitbag_sylius_przelewy24_plugin.bridge.przelewy24"
         tags:
@@ -8,6 +9,7 @@ services:
 
     bitbag_sylius_przelewy24_plugin.action.notify:
         class: BitBag\SyliusPrzelewy24Plugin\Action\NotifyAction
+        public: true
         arguments:
             - "@bitbag_sylius_przelewy24_plugin.bridge.przelewy24"
         tags:
@@ -15,6 +17,7 @@ services:
 
     bitbag_sylius_przelewy24_plugin.action.status:
         class: BitBag\SyliusPrzelewy24Plugin\Action\StatusAction
+        public: true
         arguments:
             - "@bitbag_sylius_przelewy24_plugin.bridge.przelewy24"
         tags:
@@ -22,6 +25,7 @@ services:
 
     bitbag_sylius_przelewy24_plugin.action.convert_payment:
         class: BitBag\SyliusPrzelewy24Plugin\Action\ConvertPaymentAction
+        public: true
         arguments:
             - "@sylius.payment_description_provider"
         tags:
