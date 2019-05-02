@@ -1,6 +1,6 @@
 <h1 align="center">
     <a href="http://bitbag.shop" target="_blank">
-        <img src="doc/logo.jpeg" />
+        <img src="doc/logo.jpeg" width="55%" />
     </a>
     <br />
     <a href="https://packagist.org/packages/bitbag/przelewy24-plugin" title="License" target="_blank">
