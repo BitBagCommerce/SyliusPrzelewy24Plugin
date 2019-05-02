@@ -14,8 +14,9 @@ namespace Tests\BitBag\SyliusPrzelewy24Plugin\Behat\Page\External;
 
 use Behat\Mink\Session;
 use BitBag\SyliusPrzelewy24Plugin\Bridge\Przelewy24BridgeInterface;
+use FriendsOfBehat\PageObjectExtension\Page\Page;
+use FriendsOfBehat\SymfonyExtension\Mink\MinkParameters;
 use Payum\Core\Security\TokenInterface;
-use Sylius\Behat\Page\Page;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Sylius\Component\Core\Model\PaymentInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
@@ -38,7 +39,7 @@ final class Przelewy24CheckoutPage extends Page implements Przelewy24CheckoutPag
 
     public function __construct(
         Session $session,
-        array $parameters,
+        MinkParameters $parameters,
         Przelewy24ApiMocker $przelewy24ApiMocker,
         RepositoryInterface $securityTokenRepository,
         EntityRepository $paymentRepository,

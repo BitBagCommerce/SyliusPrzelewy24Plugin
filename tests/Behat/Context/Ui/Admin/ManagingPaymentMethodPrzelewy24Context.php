@@ -13,7 +13,7 @@ declare(strict_types=1);
 namespace Tests\BitBag\SyliusPrzelewy24Plugin\Behat\Context\Ui\Admin;
 
 use Behat\Behat\Context\Context;
-use Sylius\Behat\Page\SymfonyPageInterface;
+use FriendsOfBehat\PageObjectExtension\Page\SymfonyPageInterface;
 use Sylius\Behat\Service\Resolver\CurrentPageResolverInterface;
 use Tests\BitBag\SyliusPrzelewy24Plugin\Behat\Page\Admin\PaymentMethod\CreatePageInterface;
 
@@ -25,10 +25,6 @@ final class ManagingPaymentMethodPrzelewy24Context implements Context
     /** @var CreatePageInterface */
     private $createPage;
 
-    /**
-     * @param CurrentPageResolverInterface $currentPageResolver
-     * @param CreatePageInterface $createPage
-     */
     public function __construct(
         CurrentPageResolverInterface $currentPageResolver,
         CreatePageInterface $createPage
@@ -39,8 +35,6 @@ final class ManagingPaymentMethodPrzelewy24Context implements Context
 
     /**
      * @Given I want to create a new Przelewy24 payment method
-     *
-     * @throws \Sylius\Behat\Page\UnexpectedPageException
      */
     public function iWantToCreateANewPrzelewy24PaymentMethod(): void
     {

@@ -15,8 +15,8 @@ namespace spec\BitBag\SyliusPrzelewy24Plugin\Action;
 use BitBag\SyliusPrzelewy24Plugin\Action\ConvertPaymentAction;
 use Doctrine\Common\Collections\ArrayCollection;
 use Payum\Core\Action\ActionInterface;
-use PhpSpec\ObjectBehavior;
 use Payum\Core\Request\Convert;
+use PhpSpec\ObjectBehavior;
 use Sylius\Bundle\PayumBundle\Provider\PaymentDescriptionProviderInterface;
 use Sylius\Component\Core\Model\CustomerInterface;
 use Sylius\Component\Core\Model\OrderInterface;
@@ -47,8 +47,7 @@ final class ConvertPaymentActionSpec extends ObjectBehavior
         ArrayCollection $items,
         \ArrayIterator $arrayIterator,
         PaymentDescriptionProviderInterface $paymentDescriptionProvider
-    ): void
-    {
+    ): void {
         $customer->getEmail()->willReturn('user@example.com');
         $customer->getId()->willReturn(1);
 
@@ -73,7 +72,7 @@ final class ConvertPaymentActionSpec extends ObjectBehavior
         $request->setResult([
             'p24_amount' => 445535,
             'p24_currency' => 'PLN',
-            "p24_description" => "description",
+            'p24_description' => 'description',
             'p24_language' => 'pl_PL',
             'p24_email' => 'user@example.com',
         ])->shouldBeCalled();
@@ -84,8 +83,7 @@ final class ConvertPaymentActionSpec extends ObjectBehavior
     function it_supports_only_convert_request_payment_source_and_array_to(
         Convert $request,
         PaymentInterface $payment
-    ): void
-    {
+    ): void {
         $request->getSource()->willReturn($payment);
         $request->getTo()->willReturn('array');
 

@@ -68,8 +68,7 @@ final class Przelewy24BridgeSpec extends ObjectBehavior
         ClientInterface $client,
         ResponseInterface $response,
         StreamInterface $stream
-    ): void
-    {
+    ): void {
         $posData = [
             'p24_session_id' => 'test',
             'p24_merchant_id' => 'test',
@@ -90,8 +89,7 @@ final class Przelewy24BridgeSpec extends ObjectBehavior
         ClientInterface $client,
         ResponseInterface $response,
         StreamInterface $stream
-    ): void
-    {
+    ): void {
         $posData = [
             'p24_session_id' => 'test',
             'p24_order_id' => 'test',
@@ -112,8 +110,7 @@ final class Przelewy24BridgeSpec extends ObjectBehavior
         ClientInterface $client,
         ResponseInterface $response,
         StreamInterface $stream
-    ): void
-    {
+    ): void {
         $posData = [
             'p24_session_id' => 'test',
             'p24_order_id' => 'test',

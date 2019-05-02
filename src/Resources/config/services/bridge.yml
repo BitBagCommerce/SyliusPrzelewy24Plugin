@@ -1,5 +1,6 @@
 services:
     bitbag_sylius_przelewy24_plugin.bridge.przelewy24:
         class: BitBag\SyliusPrzelewy24Plugin\Bridge\Przelewy24Bridge
+        public: true
         arguments:
             - "@sylius.http_client"

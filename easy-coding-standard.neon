@@ -1,8 +1,0 @@
-includes:
-    - vendor/sylius-labs/coding-standard/easy-coding-standard.neon
-
-checkers:
-    PhpCsFixer\Fixer\Phpdoc\PhpdocSingleLineVarSpacingFixer: {}
-    PhpCsFixer\Fixer\Phpdoc\PhpdocNoUselessInheritdocFixer: {}
-    PhpCsFixer\Fixer\Phpdoc\PhpdocTypesOrderFixer: {}
-    PhpCsFixer\Fixer\Phpdoc\GeneralPhpdocAnnotationRemoveFixer: {}

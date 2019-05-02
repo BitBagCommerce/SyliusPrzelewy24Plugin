@@ -53,8 +53,7 @@ final class NotifyActionSpec extends ObjectBehavior
         Notify $request,
         \ArrayObject $arrayObject,
         GatewayInterface $gateway
-    ): void
-    {
+    ): void {
         $this->setGateway($gateway);
 
         $arrayObject->offsetSet('p24_session_id', 'test');
@@ -70,8 +69,7 @@ final class NotifyActionSpec extends ObjectBehavior
     function it_supports_only_notify_request_and_array_access(
         Notify $request,
         \ArrayAccess $arrayAccess
-    ): void
-    {
+    ): void {
         $request->getModel()->willReturn($arrayAccess);
 
         $this->supports($request)->shouldReturn(true);

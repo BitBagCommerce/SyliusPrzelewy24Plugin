@@ -53,8 +53,7 @@ final class StatusActionSpec extends ObjectBehavior
         GetStatusInterface $request,
         PaymentInterface $payment,
         GatewayInterface $gateway
-    ): void
-    {
+    ): void {
         $this->setApi([
             'merchant_id' => 'test',
             'crc_key' => 'test',
@@ -74,8 +73,7 @@ final class StatusActionSpec extends ObjectBehavior
     function it_supports_only_get_status_request_and_array_access(
         GetStatusInterface $request,
         PaymentInterface $payment
-    ): void
-    {
+    ): void {
         $request->getModel()->willReturn($payment);
 
         $this->supports($request)->shouldReturn(true);

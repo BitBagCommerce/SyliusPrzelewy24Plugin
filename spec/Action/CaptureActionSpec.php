@@ -15,19 +15,19 @@ namespace spec\BitBag\SyliusPrzelewy24Plugin\Action;
 use BitBag\SyliusPrzelewy24Plugin\Action\CaptureAction;
 use BitBag\SyliusPrzelewy24Plugin\Bridge\Przelewy24BridgeInterface;
 use Payum\Core\Action\ActionInterface;
+use Payum\Core\ApiAwareInterface;
 use Payum\Core\Bridge\Spl\ArrayObject;
+use Payum\Core\GatewayAwareInterface;
 use Payum\Core\GatewayInterface;
 use Payum\Core\Payum;
 use Payum\Core\Reply\HttpPostRedirect;
 use Payum\Core\Request\Capture;
 use Payum\Core\Security\GenericTokenFactory;
+use Payum\Core\Security\GenericTokenFactoryAwareInterface;
 use Payum\Core\Security\TokenInterface;
 use PhpSpec\ObjectBehavior;
 use Prophecy\Argument;
 use Sylius\Component\Core\Model\PaymentInterface;
-use Payum\Core\Security\GenericTokenFactoryAwareInterface;
-use Payum\Core\ApiAwareInterface;
-use Payum\Core\GatewayAwareInterface;
 
 final class CaptureActionSpec extends ObjectBehavior
 {
@@ -71,8 +71,7 @@ final class CaptureActionSpec extends ObjectBehavior
         GenericTokenFactory $genericTokenFactory,
         GatewayInterface $gateway,
         Przelewy24BridgeInterface $przelewy24Bridge
-    ): void
-    {
+    ): void {
         $this->setGateway($gateway);
 
         $this->setApi([
@@ -100,9 +99,9 @@ final class CaptureActionSpec extends ObjectBehavior
         $arrayObject->offsetExists('p24_status')->shouldBeCalled();
         $arrayObject->offsetGet('token')->willReturn('token');
         $arrayObject->offsetSet('token', 'token')->shouldBeCalled();
-        $arrayObject->offsetSet("p24_url_cancel", "url&status=cancelled")->shouldBeCalled();
+        $arrayObject->offsetSet('p24_url_cancel', 'url&status=cancelled')->shouldBeCalled();
         $arrayObject->offsetSet('p24_url_status', 'url')->shouldBeCalled();
-        $arrayObject-> offsetSet('p24_wait_for_result', '1')->shouldBeCalled();
+        $arrayObject->offsetSet('p24_wait_for_result', '1')->shouldBeCalled();
         $arrayObject->offsetSet('p24_url_return', 'url')->shouldBeCalled();
         $arrayObject->offsetSet('p24_session_id', Argument::any())->shouldBeCalled();
 
@@ -122,8 +121,7 @@ final class CaptureActionSpec extends ObjectBehavior
     function it_supports_only_capture_request_and_array_access(
         Capture $request,
         \ArrayAccess $arrayAccess
-    ): void
-    {
+    ): void {
         $request->getModel()->willReturn($arrayAccess);
 
         $this->supports($request)->shouldReturn(true);

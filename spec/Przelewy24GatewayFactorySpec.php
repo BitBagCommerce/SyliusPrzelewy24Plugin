@@ -13,8 +13,8 @@ declare(strict_types=1);
 namespace spec\BitBag\SyliusPrzelewy24Plugin\Action;
 
 use BitBag\SyliusPrzelewy24Plugin\Przelewy24GatewayFactory;
-use PhpSpec\ObjectBehavior;
 use Payum\Core\GatewayFactory;
+use PhpSpec\ObjectBehavior;
 
 final class Przelewy24GatewayFactorySpec extends ObjectBehavior
 {

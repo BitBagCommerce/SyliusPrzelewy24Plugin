@@ -1,19 +1,11 @@
-/bin/
-!/bin/.gitkeep
-
 /vendor/
 /node_modules/
+/composer.lock
 
 /etc/build/*
-!/etc/build/.gitkeep
+!/etc/build/.gitignore
 
-/tests/Application/node_modules/
+/tests/Application/yarn.lock
 
-/tests/Application/var/*
-!/tests/Application/var/.gitkeep
-
-/tests/Application/web/*
-!/tests/Application/web/app.php
-!/tests/Application/web/app_dev.php
-!/tests/Application/web/app_test.php
-!/tests/Application/web/.gitkeep
+/behat.yml
+/phpspec.yml

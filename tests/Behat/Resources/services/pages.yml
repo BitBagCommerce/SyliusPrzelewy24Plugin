@@ -1,3 +1,0 @@
-imports:
-    - { resource: "pages/admin.yml" }
-    - { resource: "pages/external.yml" }
