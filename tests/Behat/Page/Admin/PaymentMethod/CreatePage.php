@@ -16,25 +16,16 @@ use Sylius\Behat\Page\Admin\Crud\CreatePage as BaseCreatePage;
 
 final class CreatePage extends BaseCreatePage implements CreatePageInterface
 {
-    /**
-     * {@inheritdoc}
-     */
     public function setEnvironment(string $environment): void
     {
         $this->getDocument()->selectFieldOption('Environment', $environment);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setMerchantId(string $merchantId): void
     {
         $this->getDocument()->fillField('Merchant id', $merchantId);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function setCrcKey(string $crcKey): void
     {
         $this->getDocument()->fillField('CRC Key', $crcKey);

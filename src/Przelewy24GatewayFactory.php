@@ -18,9 +18,6 @@ use Payum\Core\GatewayFactory;
 
 final class Przelewy24GatewayFactory extends GatewayFactory
 {
-    /**
-     * {@inheritDoc}
-     */
     protected function populateConfig(ArrayObject $config): void
     {
         $config->defaults([
@@ -28,7 +25,7 @@ final class Przelewy24GatewayFactory extends GatewayFactory
             'payum.factory_title' => 'Przelewy24',
         ]);
 
-        if (false === (bool)$config['payum.api']) {
+        if (false === (bool) $config['payum.api']) {
             $config['payum.default_options'] = [
                 'crc_key' => null,
                 'merchant_id' => null,

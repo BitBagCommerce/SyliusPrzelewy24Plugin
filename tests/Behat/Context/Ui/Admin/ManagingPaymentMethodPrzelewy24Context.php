@@ -19,14 +19,10 @@ use Tests\BitBag\SyliusPrzelewy24Plugin\Behat\Page\Admin\PaymentMethod\CreatePag
 
 final class ManagingPaymentMethodPrzelewy24Context implements Context
 {
-    /**
-     * @var CurrentPageResolverInterface
-     */
+    /** @var CurrentPageResolverInterface */
     private $currentPageResolver;
 
-    /**
-     * @var CreatePageInterface
-     */
+    /** @var CreatePageInterface */
     private $createPage;
 
     /**
@@ -36,8 +32,7 @@ final class ManagingPaymentMethodPrzelewy24Context implements Context
     public function __construct(
         CurrentPageResolverInterface $currentPageResolver,
         CreatePageInterface $createPage
-    )
-    {
+    ) {
         $this->createPage = $createPage;
         $this->currentPageResolver = $currentPageResolver;
     }
@@ -51,7 +46,6 @@ final class ManagingPaymentMethodPrzelewy24Context implements Context
     {
         $this->createPage->open(['factory' => 'przelewy24']);
     }
-
 
     /**
      * @When I configure it with test Przelewy24 credentials

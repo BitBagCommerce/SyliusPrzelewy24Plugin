@@ -20,24 +20,16 @@ use Tests\BitBag\SyliusPrzelewy24Plugin\Behat\Page\External\Przelewy24CheckoutPa
 
 final class Przelewy24CheckoutContext implements Context
 {
-    /**
-     * @var CompletePageInterface
-     */
+    /** @var CompletePageInterface */
     private $summaryPage;
 
-    /**
-     * @var Przelewy24CheckoutPageInterface
-     */
+    /** @var Przelewy24CheckoutPageInterface */
     private $przelewy24CheckoutPage;
 
-    /**
-     * @var ShowPageInterface
-     */
+    /** @var ShowPageInterface */
     private $orderDetails;
 
-    /**
-     * @var EntityRepository
-     */
+    /** @var EntityRepository */
     private $paymentRepository;
 
     /**
@@ -51,8 +43,7 @@ final class Przelewy24CheckoutContext implements Context
         Przelewy24CheckoutPageInterface $przelewy24CheckoutPage,
         ShowPageInterface $orderDetails,
         EntityRepository $paymentRepository
-    )
-    {
+    ) {
         $this->summaryPage = $summaryPage;
         $this->przelewy24CheckoutPage = $przelewy24CheckoutPage;
         $this->orderDetails = $orderDetails;

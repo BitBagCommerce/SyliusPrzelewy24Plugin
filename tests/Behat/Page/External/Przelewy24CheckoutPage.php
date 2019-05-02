@@ -24,34 +24,18 @@ use Tests\BitBag\SyliusPrzelewy24Plugin\Behat\Service\Mocker\Przelewy24ApiMocker
 
 final class Przelewy24CheckoutPage extends Page implements Przelewy24CheckoutPageInterface
 {
-    /**
-     * @var Przelewy24ApiMocker
-     */
+    /** @var Przelewy24ApiMocker */
     private $przelewy24ApiMocker;
 
-    /**
-     * @var RepositoryInterface
-     */
+    /** @var RepositoryInterface */
     private $securityTokenRepository;
 
-    /**
-     * @var EntityRepository
-     */
+    /** @var EntityRepository */
     private $paymentRepository;
 
-    /**
-     * @var Client
-     */
+    /** @var Client */
     private $client;
 
-    /**
-     * @param Session $session
-     * @param array $parameters
-     * @param Przelewy24ApiMocker $przelewy24ApiMocker
-     * @param RepositoryInterface $securityTokenRepository
-     * @param EntityRepository $paymentRepository
-     * @param Client $client
-     */
     public function __construct(
         Session $session,
         array $parameters,
@@ -59,8 +43,7 @@ final class Przelewy24CheckoutPage extends Page implements Przelewy24CheckoutPag
         RepositoryInterface $securityTokenRepository,
         EntityRepository $paymentRepository,
         Client $client
-    )
-    {
+    ) {
         parent::__construct($session, $parameters);
 
         $this->przelewy24ApiMocker = $przelewy24ApiMocker;
@@ -69,12 +52,6 @@ final class Przelewy24CheckoutPage extends Page implements Przelewy24CheckoutPag
         $this->client = $client;
     }
 
-    /**
-     * @inheritDoc}
-     *
-     * @throws \Behat\Mink\Exception\DriverException
-     * @throws \Behat\Mink\Exception\UnsupportedDriverActionException
-     */
     public function pay(): void
     {
         $captureToken = $this->findToken();
@@ -89,18 +66,12 @@ final class Przelewy24CheckoutPage extends Page implements Przelewy24CheckoutPag
         ];
 
         $this->przelewy24ApiMocker->mockApiSuccessfulVerifyTransaction(function () use ($notifyToken, $postData) {
-           $this->client->request('POST', $notifyToken->getTargetUrl(), $postData);
+            $this->client->request('POST', $notifyToken->getTargetUrl(), $postData);
         });
 
         $this->getDriver()->visit($captureToken->getAfterUrl());
     }
 
-    /**
-     * @inheritDoc}
-     *
-     * @throws \Behat\Mink\Exception\DriverException
-     * @throws \Behat\Mink\Exception\UnsupportedDriverActionException
-     */
     public function failedPayment(): void
     {
         $captureToken = $this->findToken();
@@ -108,19 +79,11 @@ final class Przelewy24CheckoutPage extends Page implements Przelewy24CheckoutPag
         $this->getDriver()->visit($captureToken->getAfterUrl() . '&' . http_build_query(['status' => Przelewy24BridgeInterface::CANCELLED_STATUS]));
     }
 
-    /**
-     * {@inheritDoc}
-     */
     protected function getUrl(array $urlParameters = []): string
     {
         return 'https://sandbox.przelewy24.pl/';
     }
 
-    /**
-     * @param string $type
-     *
-     * @return TokenInterface
-     */
     private function findToken(string $type = 'capture'): TokenInterface
     {
         $tokens = [];
@@ -139,11 +102,6 @@ final class Przelewy24CheckoutPage extends Page implements Przelewy24CheckoutPag
         throw new \RuntimeException('Cannot find capture token, check if you are after proper checkout steps');
     }
 
-    /**
-     * @param TokenInterface $token
-     *
-     * @return string
-     */
     private function getSessionId(TokenInterface $token): string
     {
         /** @var PaymentInterface $payment */

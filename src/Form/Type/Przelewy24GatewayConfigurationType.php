@@ -21,9 +21,6 @@ use Symfony\Component\Validator\Constraints\NotBlank;
 
 final class Przelewy24GatewayConfigurationType extends AbstractType
 {
-    /**
-     * {@inheritdoc}
-     */
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -55,7 +52,7 @@ final class Przelewy24GatewayConfigurationType extends AbstractType
                     new NotBlank([
                         'message' => 'bitbag_sylius_przelewy24_plugin.environment.not_blank',
                         'groups' => ['sylius'],
-                    ])
+                    ]),
                 ],
             ])
         ;

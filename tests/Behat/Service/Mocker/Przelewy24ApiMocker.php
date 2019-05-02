@@ -17,22 +17,14 @@ use Sylius\Behat\Service\Mocker\MockerInterface;
 
 final class Przelewy24ApiMocker
 {
-    /**
-     * @var MockerInterface
-     */
+    /** @var MockerInterface */
     private $mocker;
 
-    /**
-     * @param MockerInterface $mocker
-     */
     public function __construct(MockerInterface $mocker)
     {
         $this->mocker = $mocker;
     }
 
-    /**
-     * @param callable $action
-     */
     public function mockApiSuccessfulVerifyTransaction(callable $action): void
     {
         $mockService = $this->mocker
@@ -40,7 +32,6 @@ final class Przelewy24ApiMocker
         ;
 
         $mockService->shouldReceive('setAuthorizationData');
-
         $mockService->shouldReceive('trnVerify')->andReturn(true);
         $mockService->shouldReceive('createSign')->andReturn('test');
 

@@ -18,28 +18,23 @@ use Payum\Core\GatewayAwareTrait;
 use Payum\Core\Request\Convert;
 use Sylius\Bundle\PayumBundle\Provider\PaymentDescriptionProviderInterface;
 use Sylius\Component\Core\Model\OrderInterface;
-use Sylius\Component\Core\Model\PaymentInterface;
 use Sylius\Component\Core\Model\OrderItemInterface;
+use Sylius\Component\Core\Model\PaymentInterface;
 
 final class ConvertPaymentAction implements ActionInterface
 {
     use GatewayAwareTrait;
 
-    /**
-     * @var PaymentDescriptionProviderInterface
-     */
+    /** @var PaymentDescriptionProviderInterface */
     private $paymentDescriptionProvider;
 
-    /**
-     * @param PaymentDescriptionProviderInterface $paymentDescriptionProvider
-     */
     public function __construct(PaymentDescriptionProviderInterface $paymentDescriptionProvider)
     {
         $this->paymentDescriptionProvider = $paymentDescriptionProvider;
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      *
      * @param Convert $request
      */
@@ -62,9 +57,6 @@ final class ConvertPaymentAction implements ActionInterface
         $request->setResult($details);
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function supports($request): bool
     {
         return
@@ -134,7 +126,7 @@ final class ConvertPaymentAction implements ActionInterface
             $shoppingList['p24_quantity_' . $index] = $item->getQuantity();
             $shoppingList['p24_price_' . $index] = $item->getUnitPrice();
 
-            $index++;
+            ++$index;
         }
 
         return $shoppingList;

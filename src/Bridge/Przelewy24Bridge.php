@@ -16,75 +16,48 @@ use GuzzleHttp\ClientInterface;
 
 final class Przelewy24Bridge implements Przelewy24BridgeInterface
 {
-    /**
-     * @var string
-     */
+    /** @var string */
     private $merchantId;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $crcKey;
 
-    /**
-     * @var string
-     */
+    /** @var string */
     private $environment = self::SANDBOX_ENVIRONMENT;
 
-    /**
-     * @var ClientInterface
-     */
+    /** @var ClientInterface */
     private $client;
 
-    /**
-     * @param ClientInterface $client
-     */
     public function __construct(ClientInterface $client)
     {
         $this->client = $client;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function setAuthorizationData(
         string $merchantId,
         string $crcKey,
         string $environment = self::SANDBOX_ENVIRONMENT
-    ): void
-    {
+    ): void {
         $this->merchantId = $merchantId;
         $this->crcKey = $crcKey;
         $this->environment = $environment;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getTrnRegisterUrl(): string
     {
         return $this->getHostForEnvironment() . 'trnRegister';
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getTrnRequestUrl(string $token): string
     {
         return $this->getHostForEnvironment() . 'trnRequest/' . $token;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getTrnVerifyUrl(): string
     {
         return $this->getHostForEnvironment() . 'trnVerify';
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function getHostForEnvironment(): string
     {
         return self::SANDBOX_ENVIRONMENT === $this->environment ?
@@ -92,17 +65,11 @@ final class Przelewy24Bridge implements Przelewy24BridgeInterface
         ;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function createSign(array $parameters): string
     {
         return md5(implode('|', array_merge($parameters, [$this->crcKey])));
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function trnRegister(array $posData): string
     {
         $posData['p24_merchant_id'] = $this->merchantId;
@@ -121,9 +88,6 @@ final class Przelewy24Bridge implements Przelewy24BridgeInterface
         return $this->request($posData, $this->getTrnRegisterUrl())['token'];
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function trnVerify(array $posData): bool
     {
         $posData['p24_merchant_id'] = $this->merchantId;
@@ -139,15 +103,12 @@ final class Przelewy24Bridge implements Przelewy24BridgeInterface
 
         $posData['p24_sign'] = $sign;
 
-        return (int)$this->request($posData, $this->getTrnVerifyUrl())['error'] === 0;
+        return (int) $this->request($posData, $this->getTrnVerifyUrl())['error'] === 0;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function request(array $posData, string $url): array
     {
-        $response = (string)$this->client->request('POST', $url, ['form_params' => $posData])->getBody();
+        $response = (string) $this->client->request('POST', $url, ['form_params' => $posData])->getBody();
 
         $result = [];
 

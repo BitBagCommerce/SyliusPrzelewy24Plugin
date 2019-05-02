@@ -7,9 +7,6 @@ use Symfony\Component\Config\Loader\LoaderInterface;
 
 final class AppKernel extends Kernel
 {
-    /**
-     * {@inheritdoc}
-     */
     public function registerBundles(): array
     {
         return array_merge(parent::registerBundles(), [

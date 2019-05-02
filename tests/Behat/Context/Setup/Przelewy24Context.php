@@ -14,38 +14,28 @@ namespace Tests\BitBag\SyliusPrzelewy24Plugin\Behat\Context\Setup;
 
 use Behat\Behat\Context\Context;
 use BitBag\SyliusPrzelewy24Plugin\Bridge\Przelewy24BridgeInterface;
+use Doctrine\Common\Persistence\ObjectManager;
 use Sylius\Behat\Service\SharedStorageInterface;
 use Sylius\Bundle\CoreBundle\Fixture\Factory\ExampleFactoryInterface;
 use Sylius\Component\Core\Model\PaymentMethodInterface;
 use Sylius\Component\Core\Repository\PaymentMethodRepositoryInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
-use Doctrine\Common\Persistence\ObjectManager;
 
 final class Przelewy24Context implements Context
 {
-    /**
-     * @var SharedStorageInterface
-     */
+    /** @var SharedStorageInterface */
     private $sharedStorage;
 
-    /**
-     * @var PaymentMethodRepositoryInterface
-     */
+    /** @var PaymentMethodRepositoryInterface */
     private $paymentMethodRepository;
 
-    /**
-     * @var ExampleFactoryInterface
-     */
+    /** @var ExampleFactoryInterface */
     private $paymentMethodExampleFactory;
 
-    /**
-     * @var FactoryInterface
-     */
+    /** @var FactoryInterface */
     private $paymentMethodTranslationFactory;
 
-    /**
-     * @var ObjectManager
-     */
+    /** @var ObjectManager */
     private $paymentMethodManager;
 
     /**
@@ -75,8 +65,7 @@ final class Przelewy24Context implements Context
     public function theStoreHasAPaymentMethodWithACodeAndPrzelewy24CheckoutGateway(
         string $paymentMethodName,
         string $paymentMethodCode
-    ): void
-    {
+    ): void {
         $paymentMethod = $this->createPaymentMethod($paymentMethodName, $paymentMethodCode, 'Przelewy24');
 
         $paymentMethod->getGatewayConfig()->setConfig([
@@ -103,9 +92,7 @@ final class Przelewy24Context implements Context
         string $description = '',
         bool $addForCurrentChannel = true,
         int $position = null
-    ): PaymentMethodInterface
-    {
-
+    ): PaymentMethodInterface {
         /** @var PaymentMethodInterface $paymentMethod */
         $paymentMethod = $this->paymentMethodExampleFactory->create([
             'name' => ucfirst($name),

@@ -15,6 +15,7 @@ namespace BitBag\SyliusPrzelewy24Plugin\Action;
 use BitBag\SyliusPrzelewy24Plugin\Bridge\Przelewy24BridgeInterface;
 use Payum\Core\Action\ActionInterface;
 use Payum\Core\ApiAwareInterface;
+use Payum\Core\Bridge\Spl\ArrayObject;
 use Payum\Core\Exception\InvalidArgumentException;
 use Payum\Core\Exception\RequestNotSupportedException;
 use Payum\Core\Exception\UnsupportedApiException;
@@ -22,29 +23,20 @@ use Payum\Core\GatewayAwareInterface;
 use Payum\Core\GatewayAwareTrait;
 use Payum\Core\Request\GetHttpRequest;
 use Payum\Core\Request\Notify;
-use Payum\Core\Bridge\Spl\ArrayObject;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 final class NotifyAction implements ActionInterface, ApiAwareInterface, GatewayAwareInterface
 {
     use GatewayAwareTrait;
 
-    /**
-     * @var Przelewy24BridgeInterface
-     */
+    /** @var Przelewy24BridgeInterface */
     private $przelewy24Bridge;
 
-    /**
-     * @param Przelewy24BridgeInterface $przelewy24Bridge
-     */
     public function __construct(Przelewy24BridgeInterface $przelewy24Bridge)
     {
         $this->przelewy24Bridge = $przelewy24Bridge;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function setApi($api): void
     {
         if (false === is_array($api)) {
@@ -55,7 +47,7 @@ final class NotifyAction implements ActionInterface, ApiAwareInterface, GatewayA
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      *
      * @param Notify $request
      */
@@ -72,22 +64,20 @@ final class NotifyAction implements ActionInterface, ApiAwareInterface, GatewayA
         }
 
         if (false === $this->verifySign($httpRequest)) {
-            throw new InvalidArgumentException("Invalid sign.");
+            throw new InvalidArgumentException('Invalid sign.');
         }
 
         $details['p24_order_id'] = $httpRequest->request['p24_order_id'];
 
         if (true === $this->przelewy24Bridge->trnVerify($this->getPosData($details))) {
             $details['p24_status'] = Przelewy24BridgeInterface::COMPLETED_STATUS;
+
             return;
         }
 
         $details['p24_status'] = Przelewy24BridgeInterface::FAILED_STATUS;
     }
 
-    /**
-     * {@inheritDoc}
-     */
     public function supports($request): bool
     {
         return
