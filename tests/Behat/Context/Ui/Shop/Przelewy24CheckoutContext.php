@@ -75,7 +75,9 @@ final class Przelewy24CheckoutContext implements Context
      */
     public function iSignInToPrzelewy24AndPaySuccessfully(): void
     {
-        $this->przelewy24CheckoutPage->pay();
+        $this->przelewy24ApiMocker->mockApiSuccessfulVerifyTransaction(function () {
+            $this->przelewy24CheckoutPage->pay();
+        });
     }
 
     /**
