@@ -6,3 +6,9 @@ services:
     bitbag.test.client: '@test.client'
     bitbag.test.client.history: '@test.client.history'
     bitbag.test.client.cookiejar: '@test.client.cookiejar'
+
+    bitbag_sylius_przelewy24_plugin.bridge.przelewy24:
+        class: Tests\BitBag\SyliusPrzelewy24Plugin\Behat\Service\Mocker\Przelewy24Bridge
+        public: true
+        arguments:
+            - "@service_container"

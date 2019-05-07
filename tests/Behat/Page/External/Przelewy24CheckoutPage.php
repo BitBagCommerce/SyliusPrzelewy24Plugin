@@ -66,11 +66,10 @@ final class Przelewy24CheckoutPage extends Page implements Przelewy24CheckoutPag
             'p24_currency' => 'test',
         ];
 
-        $this->przelewy24ApiMocker->mockApiSuccessfulVerifyTransaction(function () use ($notifyToken, $postData) {
+        $this->przelewy24ApiMocker->mockApiSuccessfulVerifyTransaction(function () use ($notifyToken, $postData, $captureToken) {
             $this->client->request('POST', $notifyToken->getTargetUrl(), $postData);
+            $this->getDriver()->visit($captureToken->getAfterUrl());
         });
-
-        $this->getDriver()->visit($captureToken->getAfterUrl());
     }
 
     public function failedPayment(): void
