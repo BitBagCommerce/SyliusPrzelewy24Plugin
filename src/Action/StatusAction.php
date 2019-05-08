@@ -81,6 +81,12 @@ final class StatusAction implements ActionInterface, ApiAwareInterface, GatewayA
             return;
         }
 
+        if (Przelewy24BridgeInterface::CREATED_STATUS === $details['p24_status']) {
+            $request->markPending();
+
+            return;
+        }
+
         if (Przelewy24BridgeInterface::FAILED_STATUS === $details['p24_status']) {
             $request->markFailed();
 

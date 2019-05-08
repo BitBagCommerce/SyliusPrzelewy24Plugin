@@ -73,6 +73,7 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface, Generic
         $details['p24_wait_for_result'] = '1';
         $details['p24_url_status'] = $notifyToken->getTargetUrl();
         $details['token'] = $this->przelewy24Bridge->trnRegister($details->toUnsafeArray());
+        $details['p24_status'] = Przelewy24BridgeInterface::CREATED_STATUS;
 
         throw new HttpPostRedirect(
             $this->przelewy24Bridge->getTrnRequestUrl($details['token'])

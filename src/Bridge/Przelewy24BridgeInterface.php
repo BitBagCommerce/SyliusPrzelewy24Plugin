@@ -22,6 +22,7 @@ interface Przelewy24BridgeInterface
     const COMPLETED_STATUS = 'completed';
     const FAILED_STATUS = 'failed';
     const CANCELLED_STATUS = 'cancelled';
+    const CREATED_STATUS = 'created';
 
     public function getTrnRegisterUrl(): string;
 
