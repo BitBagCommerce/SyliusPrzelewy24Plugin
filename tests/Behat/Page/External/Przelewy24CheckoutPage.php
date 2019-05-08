@@ -55,7 +55,7 @@ final class Przelewy24CheckoutPage extends Page implements Przelewy24CheckoutPag
 
     public function pay(): void
     {
-        $captureToken = $this->findToken();
+        $captureToken = $this->findToken('after');
         $notifyToken = $this->findToken('notify');
 
         $postData = [
@@ -77,7 +77,7 @@ final class Przelewy24CheckoutPage extends Page implements Przelewy24CheckoutPag
 
     public function failedPayment(): void
     {
-        $captureToken = $this->findToken();
+        $captureToken = $this->findToken('after');
 
         $this->getDriver()->visit($captureToken->getTargetUrl() . '&' . http_build_query(['status' => Przelewy24BridgeInterface::CANCELLED_STATUS]));
     }
