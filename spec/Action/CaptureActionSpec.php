@@ -104,6 +104,7 @@ final class CaptureActionSpec extends ObjectBehavior
         $arrayObject->offsetSet('p24_wait_for_result', '1')->shouldBeCalled();
         $arrayObject->offsetSet('p24_url_return', 'url')->shouldBeCalled();
         $arrayObject->offsetSet('p24_session_id', Argument::any())->shouldBeCalled();
+        $arrayObject->offsetSet('p24_status', Przelewy24BridgeInterface::CREATED_STATUS)->shouldBeCalled();
 
         $request->getModel()->willReturn($arrayObject);
         $request->getFirstModel()->willReturn($payment);
