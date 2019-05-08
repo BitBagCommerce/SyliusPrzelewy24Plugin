@@ -28,10 +28,8 @@ interface Przelewy24BridgeInterface
 
     public function getTrnRequestUrl(string $token): string;
 
-    /** @return string */
     public function getTrnVerifyUrl(): string;
 
-    /** @return string */
     public function getHostForEnvironment(): string;
 
     public function setAuthorizationData(

@@ -46,11 +46,6 @@ final class NotifyAction implements ActionInterface, ApiAwareInterface, GatewayA
         $this->przelewy24Bridge->setAuthorizationData($api['merchant_id'], $api['crc_key'], $api['environment']);
     }
 
-    /**
-     * {@inheritdoc}
-     *
-     * @param Notify $request
-     */
     public function execute($request): void
     {
         RequestNotSupportedException::assertSupports($this, $request);
@@ -86,11 +81,6 @@ final class NotifyAction implements ActionInterface, ApiAwareInterface, GatewayA
         ;
     }
 
-    /**
-     * @param ArrayObject $details
-     *
-     * @return array
-     */
     private function getPosData(ArrayObject $details): array
     {
         $posData = [];
@@ -103,11 +93,6 @@ final class NotifyAction implements ActionInterface, ApiAwareInterface, GatewayA
         return $posData;
     }
 
-    /**
-     * @param GetHttpRequest $request
-     *
-     * @return bool
-     */
     private function verifySign(GetHttpRequest $request): bool
     {
         $sign = $this->przelewy24Bridge->createSign([

@@ -33,11 +33,6 @@ final class ConvertPaymentAction implements ActionInterface
         $this->paymentDescriptionProvider = $paymentDescriptionProvider;
     }
 
-    /**
-     * {@inheritdoc}
-     *
-     * @param Convert $request
-     */
     public function execute($request): void
     {
         RequestNotSupportedException::assertSupports($this, $request);
@@ -66,11 +61,6 @@ final class ConvertPaymentAction implements ActionInterface
         ;
     }
 
-    /**
-     * @param PaymentInterface $payment
-     *
-     * @return array
-     */
     private function getPaymentData(PaymentInterface $payment): array
     {
         $paymentData = [];
@@ -82,11 +72,6 @@ final class ConvertPaymentAction implements ActionInterface
         return $paymentData;
     }
 
-    /**
-     * @param OrderInterface $order
-     *
-     * @return array
-     */
     private function getCustomerData(OrderInterface $order): array
     {
         $customerData = [];
@@ -109,11 +94,6 @@ final class ConvertPaymentAction implements ActionInterface
         return $customerData;
     }
 
-    /**
-     * @param OrderInterface $order
-     *
-     * @return array
-     */
     private function getShoppingList(OrderInterface $order): array
     {
         $shoppingList = [];

@@ -44,11 +44,6 @@ final class StatusAction implements ActionInterface, ApiAwareInterface, GatewayA
         $this->przelewy24Bridge->setAuthorizationData($api['merchant_id'], $api['crc_key'], $api['environment']);
     }
 
-    /**
-     * {@inheritdoc}
-     *
-     * @param GetStatusInterface $request
-     */
     public function execute($request): void
     {
         RequestNotSupportedException::assertSupports($this, $request);

@@ -86,7 +86,7 @@ final class Przelewy24CheckoutContext implements Context
     public function iTryToPayAgainPrzelewy24Payment(): void
     {
         $this->przelewy24ApiMocker->mockApiSuccessfulVerifyTransaction(function () {
-             $this->orderDetails->pay();
+            $this->orderDetails->pay();
         });
     }
 
@@ -97,7 +97,7 @@ final class Przelewy24CheckoutContext implements Context
     public function iFailedMyPrzelewy24Payment(): void
     {
         $this->przelewy24ApiMocker->mockApiSuccessfulVerifyTransaction(function () {
-             $this->przelewy24CheckoutPage->failedPayment();
+            $this->przelewy24CheckoutPage->failedPayment();
         });
     }
 }
