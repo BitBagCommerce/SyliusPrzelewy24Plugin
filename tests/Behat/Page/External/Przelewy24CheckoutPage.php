@@ -79,7 +79,7 @@ final class Przelewy24CheckoutPage extends Page implements Przelewy24CheckoutPag
     {
         $captureToken = $this->findToken();
 
-        $this->getDriver()->visit($captureToken->getAfterUrl() . '&' . http_build_query(['status' => Przelewy24BridgeInterface::CANCELLED_STATUS]));
+        $this->getDriver()->visit($captureToken->getTargetUrl() . '&' . http_build_query(['status' => Przelewy24BridgeInterface::CANCELLED_STATUS]));
     }
 
     protected function getUrl(array $urlParameters = []): string
