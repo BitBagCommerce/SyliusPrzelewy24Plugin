@@ -71,7 +71,7 @@ final class Przelewy24CheckoutPage extends Page implements Przelewy24CheckoutPag
 
             sleep(1);
 
-            $this->getDriver()->visit($captureToken->getTargetUrl());
+            $this->getDriver()->visit($captureToken->getAfterUrl());
         });
     }
 
