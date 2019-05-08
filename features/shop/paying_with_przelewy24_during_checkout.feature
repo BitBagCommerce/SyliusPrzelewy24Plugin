@@ -28,25 +28,3 @@ Feature: Paying with Przelewy24 during checkout
         And I cancel my Przelewy24 payment
         Then I should be notified that my payment has been cancelled
         And I should be able to pay again
-
-    @ui
-    Scenario: Retrying the payment with success
-        Given I added product "PHP T-Shirt" to the cart
-        And I have proceeded selecting "Przelewy24" payment method
-        And I have confirmed my order with Przelewy24 payment
-        But I have canceled Przelewy24 payment
-        When I try to pay again Przelewy24 payment
-        And I sign in to Przelewy24 and pay successfully
-        Then I should be notified that my payment has been completed
-        And I should see the thank you page
-
-    @ui
-    Scenario: Retrying the payment and failing
-        Given I added product "PHP T-Shirt" to the cart
-        And I have proceeded selecting "Przelewy24" payment method
-        And I have confirmed my order with Przelewy24 payment
-        But I have canceled Przelewy24 payment
-        When I try to pay again Przelewy24 payment
-        And I cancel my Przelewy24 payment
-        Then I should be notified that my payment has been cancelled
-        And I should be able to pay again
