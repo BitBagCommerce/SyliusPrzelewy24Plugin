@@ -39,6 +39,8 @@ Need some help or additional resources for a project? Write us an email on mikol
 
 We created a demo app with some useful use-cases of the plugin! Visit [demo.bitbag.shop](https://demo.bitbag.shop) to take a look at it. 
 
+## Installation
+
 ```bash
 $ composer require bitbag/przelewy24-plugin
 ```
