@@ -15,6 +15,7 @@ namespace BitBag\SyliusPrzelewy24Plugin\Action;
 use BitBag\SyliusPrzelewy24Plugin\Bridge\Przelewy24BridgeInterface;
 use Payum\Core\Action\ActionInterface;
 use Payum\Core\ApiAwareInterface;
+use Payum\Core\Bridge\Spl\ArrayObject;
 use Payum\Core\Exception\RequestNotSupportedException;
 use Payum\Core\Exception\UnsupportedApiException;
 use Payum\Core\GatewayAwareInterface;
@@ -58,6 +59,7 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface, Generic
     {
         RequestNotSupportedException::assertSupports($this, $request);
 
+        /** @var ArrayObject $details */
         $details = $request->getModel();
 
         if (isset($details['p24_status'])) {
@@ -66,14 +68,14 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface, Generic
 
         /** @var TokenInterface $token */
         $token = $request->getToken();
-        $details['p24_session_id'] = uniqid();
+        $details['p24_session_id'] = uniqid('p24_', true);
         $notifyToken = $this->tokenFactory->createNotifyToken($token->getGatewayName(), $token->getDetails());
         $details['p24_url_return'] = $token->getAfterUrl();
         $details['p24_url_cancel'] = $token->getAfterUrl() . '&' . http_build_query(['status' => Przelewy24BridgeInterface::CANCELLED_STATUS]);
         $details['p24_wait_for_result'] = '1';
         $details['p24_url_status'] = $notifyToken->getTargetUrl();
-        $details['token'] = $this->przelewy24Bridge->trnRegister($details->toUnsafeArray());
         $details['p24_status'] = Przelewy24BridgeInterface::CREATED_STATUS;
+        $details['token'] = $this->przelewy24Bridge->trnRegister($details->toUnsafeArray());
 
         throw new HttpPostRedirect(
             $this->przelewy24Bridge->getTrnRequestUrl($details['token'])

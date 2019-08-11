@@ -12,6 +12,7 @@ declare(strict_types=1);
 
 namespace BitBag\SyliusPrzelewy24Plugin\Bridge;
 
+use Exception;
 use GuzzleHttp\ClientInterface;
 
 final class Przelewy24Bridge implements Przelewy24BridgeInterface
@@ -45,24 +46,23 @@ final class Przelewy24Bridge implements Przelewy24BridgeInterface
 
     public function getTrnRegisterUrl(): string
     {
-        return $this->getHostForEnvironment() . 'trnRegister';
+        return sprintf('%strnRegister', $this->getHostForEnvironment());
     }
 
     public function getTrnRequestUrl(string $token): string
     {
-        return $this->getHostForEnvironment() . 'trnRequest/' . $token;
+        return sprintf('%strnRequest/%s', $this->getHostForEnvironment(), $token);
     }
 
     public function getTrnVerifyUrl(): string
     {
-        return $this->getHostForEnvironment() . 'trnVerify';
+        return sprintf('%strnVerify', $this->getHostForEnvironment());
     }
 
     public function getHostForEnvironment(): string
     {
         return self::SANDBOX_ENVIRONMENT === $this->environment ?
-            self::SANDBOX_HOST : self::PRODUCTION_HOST
-        ;
+            self::SANDBOX_HOST : self::PRODUCTION_HOST;
     }
 
     public function createSign(array $parameters): string
@@ -76,12 +76,14 @@ final class Przelewy24Bridge implements Przelewy24BridgeInterface
         $posData['p24_pos_id'] = $this->merchantId;
         $posData['p24_api_version'] = self::P24_API_VERSION;
 
-        $sign = $this->createSign([
-            $posData['p24_session_id'],
-            $posData['p24_merchant_id'],
-            $posData['p24_amount'],
-            $posData['p24_currency'],
-        ]);
+        $sign = $this->createSign(
+            [
+                $posData['p24_session_id'],
+                $posData['p24_merchant_id'],
+                $posData['p24_amount'],
+                $posData['p24_currency'],
+            ]
+        );
 
         $posData['p24_sign'] = $sign;
 
@@ -94,21 +96,23 @@ final class Przelewy24Bridge implements Przelewy24BridgeInterface
         $posData['p24_pos_id'] = $this->merchantId;
         $posData['p24_api_version'] = self::P24_API_VERSION;
 
-        $sign = $this->createSign([
-            $posData['p24_session_id'],
-            $posData['p24_order_id'],
-            $posData['p24_amount'],
-            $posData['p24_currency'],
-        ]);
+        $sign = $this->createSign(
+            [
+                $posData['p24_session_id'],
+                $posData['p24_order_id'],
+                $posData['p24_amount'],
+                $posData['p24_currency'],
+            ]
+        );
 
         $posData['p24_sign'] = $sign;
 
-        return (int) $this->request($posData, $this->getTrnVerifyUrl())['error'] === 0;
+        return (int)$this->request($posData, $this->getTrnVerifyUrl())['error'] === 0;
     }
 
     public function request(array $posData, string $url): array
     {
-        $response = (string) $this->client->request('POST', $url, ['form_params' => $posData])->getBody();
+        $response = (string)$this->client->request('POST', $url, ['form_params' => $posData])->getBody();
 
         $result = [];
 
@@ -119,7 +123,7 @@ final class Przelewy24Bridge implements Przelewy24BridgeInterface
         }
 
         if (!isset($result['error']) || $result['error'] > 0) {
-            throw new \Exception($response);
+            throw new \RuntimeException($response);
         }
 
         return $result;

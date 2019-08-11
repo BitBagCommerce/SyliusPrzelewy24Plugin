@@ -67,17 +67,26 @@ $ bin/console debug:container bitbag_sylius_przelewy24_plugin
 ```bash
 $ composer install
 $ cd tests/Application
+$ cp .env .env.local #edit .env.local file and setup configuration 
 $ yarn install
 $ yarn run gulp
 $ bin/console assets:install -e test
 $ bin/console doctrine:database:create -e test
 $ bin/console doctrine:schema:create -e test
 $ bin/console server:run 127.0.0.1:8080 -e test
-$ open http://localhost:8080
-$ bin/behat
-$ bin/phpspec run
+$ bin/console sylius:fixture:load -e test #install fixtures
+open http://localhost:8080
 ```
-
+For admin panel:
+```
+open http://localhost:8080/admin
+sylius:sylius
+```
+From root catalog
+```bash
+$ vendor/bin/behat
+$ vendor/bin/phpspec run
+```
 ## Contribution
 
 Learn more about our contribution workflow on http://docs.sylius.org/en/latest/contributing/.
