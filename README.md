@@ -69,13 +69,15 @@ $ composer install
 $ cd tests/Application
 $ yarn install
 $ yarn run gulp
+$ yarn build
 $ bin/console assets:install -e test
 $ bin/console doctrine:database:create -e test
 $ bin/console doctrine:schema:create -e test
 $ bin/console server:run 127.0.0.1:8080 -e test
 $ open http://localhost:8080
-$ bin/behat
-$ bin/phpspec run
+$ cd ../..
+$ vendor/bin/behat
+$ vendor/bin/phpspec run
 ```
 
 ## Contribution
