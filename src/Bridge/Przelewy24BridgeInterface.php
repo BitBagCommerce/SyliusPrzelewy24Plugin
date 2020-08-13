@@ -14,15 +14,23 @@ namespace BitBag\SyliusPrzelewy24Plugin\Bridge;
 
 interface Przelewy24BridgeInterface
 {
-    const SANDBOX_ENVIRONMENT = 'sandbox';
-    const PRODUCTION_ENVIRONMENT = 'production';
-    const SANDBOX_HOST = 'https://sandbox.przelewy24.pl/';
-    const PRODUCTION_HOST = 'https://secure.przelewy24.pl/';
-    const P24_API_VERSION = '3.2';
-    const COMPLETED_STATUS = 'completed';
-    const FAILED_STATUS = 'failed';
-    const CANCELLED_STATUS = 'cancelled';
-    const CREATED_STATUS = 'created';
+    public const SANDBOX_ENVIRONMENT = 'sandbox';
+
+    public const PRODUCTION_ENVIRONMENT = 'production';
+
+    public const SANDBOX_HOST = 'https://sandbox.przelewy24.pl/';
+
+    public const PRODUCTION_HOST = 'https://secure.przelewy24.pl/';
+
+    public const P24_API_VERSION = '3.2';
+
+    public const COMPLETED_STATUS = 'completed';
+
+    public const FAILED_STATUS = 'failed';
+
+    public const CANCELLED_STATUS = 'cancelled';
+
+    public const CREATED_STATUS = 'created';
 
     public function getTrnRegisterUrl(): string;
 
