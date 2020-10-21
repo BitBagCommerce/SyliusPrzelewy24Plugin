@@ -57,7 +57,7 @@ $ composer require bitbag/przelewy24-plugin
 Add plugin dependencies to your `config/bundles.php` file:
 
 ```
-<span class="hljs-keyword">return</span> [
+ return [
     ...
 
     BitBag\SyliusPrzelewy24Plugin\BitBagSyliusPrzelewy24Plugin::class => [<span class="hljs-string">'all'</span> => <span class="hljs-keyword">true</span>],
