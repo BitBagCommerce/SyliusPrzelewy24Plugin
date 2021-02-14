@@ -46,8 +46,9 @@ final class ConvertPaymentAction implements ActionInterface
         $paymentData = $this->getPaymentData($payment);
         $customerData = $this->getCustomerData($order);
         $shoppingList = $this->getShoppingList($order);
+        $encoding = $this->getEncoding();
 
-        $details = array_merge($paymentData, $customerData, $shoppingList);
+        $details = array_merge($paymentData, $customerData, $shoppingList, $encoding);
 
         $request->setResult($details);
     }
@@ -110,5 +111,10 @@ final class ConvertPaymentAction implements ActionInterface
         }
 
         return $shoppingList;
+    }
+
+    private function getEncoding(): array
+    {
+        return ['p24_encoding' => 'UTF-8'];
     }
 }
