@@ -12,7 +12,7 @@ At BitBag we do believe in open source. However, we are able to do it just becau
 
 ***
 
-* [Overwiev](#overwiev)
+* [Overview](#overview)
 * [Support](#we-are-here-to-help)
 * [Installation](#installation)
   * [Requirements](#requirements)
@@ -26,7 +26,7 @@ At BitBag we do believe in open source. However, we are able to do it just becau
 * [License](#license)
 * [Contact](#contact)
 
-# Overwiev
+# Overview
 
 ***
 
@@ -62,7 +62,7 @@ Add plugin dependencies to your `config/bundles.php` file:
 return [
     ...
 
-    BitBag\SyliusPrzelewy24Plugin\BitBagSyliusPrzelewy24Plugin::class => [<span class="hljs-string">'all'</span> => <span class="hljs-keyword">true</span>],
+    BitBag\SyliusPrzelewy24Plugin\BitBagSyliusPrzelewy24Plugin::class => ['all' => true],
 ];
 ```
 
@@ -80,16 +80,15 @@ $ bin/console debug:container bitbag_sylius_przelewy24_plugin
 
 ```
 $ composer install
-$ <span class="hljs-built_in">cd</span> tests/Application
+$ cd tests/Application
 $ yarn install
-$ yarn run gulp
 $ yarn build
-$ bin/console assets:install <span class="hljs-operator">-e</span> <span class="hljs-built_in">test</span>
-$ bin/console doctrine:database:create <span class="hljs-operator">-e</span> <span class="hljs-built_in">test</span>
-$ bin/console doctrine:schema:create <span class="hljs-operator">-e</span> <span class="hljs-built_in">test</span>
-$ bin/console server:run <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span>:<span class="hljs-number">8080</span> <span class="hljs-operator">-e</span> <span class="hljs-built_in">test</span>
-$ open http://localhost:<span class="hljs-number">8080</span>
-$ <span class="hljs-built_in">cd</span> ../..
+$ symfony console assets:install -e test
+$ symfony console doctrine:database:create -e test
+$ symfony console doctrine:schema:create -e test
+$ symfony console server:start -d --port=8080 -e test
+$ open http://localhost:8080
+$ cd ../..
 $ vendor/bin/behat
 $ vendor/bin/phpspec run
 ```
