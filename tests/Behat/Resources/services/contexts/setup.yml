@@ -6,5 +6,4 @@ services:
             - "@sylius.behat.shared_storage"
             - "@sylius.repository.payment_method"
             - "@sylius.fixture.example_factory.payment_method"
-            - "@sylius.factory.payment_method_translation"
             - "@sylius.manager.payment_method"

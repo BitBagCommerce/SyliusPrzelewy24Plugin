@@ -13,5 +13,4 @@ services:
             - '@sylius.behat.page.shop.checkout.complete'
             - '@bitbag_sylius_przelewy24_plugin.page.external.przelewy24_checkout'
             - '@sylius.behat.page.shop.order.show'
-            - '@sylius.repository.payment'
             - '@bitbag_sylius_przelewy24_plugin.mocker.przelewy24_api'

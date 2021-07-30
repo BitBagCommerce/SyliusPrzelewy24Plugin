@@ -17,8 +17,7 @@ use Sylius\Behat\Service\Mocker\MockerInterface;
 
 final class Przelewy24ApiMocker
 {
-    /** @var MockerInterface */
-    private $mocker;
+    private MockerInterface $mocker;
 
     public function __construct(MockerInterface $mocker)
     {
