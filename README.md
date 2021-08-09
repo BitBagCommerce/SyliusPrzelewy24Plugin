@@ -1,6 +1,6 @@
 # [![](https://bitbag.io/wp-content/uploads/2020/10/przelewy24-1024x535.png)](https://bitbag.io/contact-us/?utm_source=github&utm_medium=referral&utm_campaign=plugins_przelewy24)
 
-# Przelewy24 Payment Gateway Plugin for Sylius
+# BitBag SyliusPrzelewy24Plugin
 ----
 
 [![](https://img.shields.io/packagist/l/bitbag/przelewy24-plugin.svg) ](https://packagist.org/packages/bitbag/przelewy24-plugin "License") [ ![](https://img.shields.io/packagist/v/bitbag/przelewy24-plugin.svg) ](https://packagist.org/packages/bitbag/przelewy24-plugin "Version") [ ![](https://img.shields.io/travis/BitBagCommerce/SyliusPrzelewy24Plugin/master.svg) ](http://travis-ci.org/BitBagCommerce/SyliusPrzelewy24Plugin "Build status") [ ![](https://img.shields.io/scrutinizer/g/BitBagCommerce/SyliusPrzelewy24Plugin.svg) ](https://scrutinizer-ci.com/g/BitBagCommerce/SyliusPrzelewy24Plugin/ "Scrutinizer") [![](https://poser.pugx.org/bitbag/przelewy24-plugin/downloads)](https://packagist.org/packages/bitbag/przelewy24-plugin "Total Downloads") [![Slack](https://img.shields.io/badge/community%20chat-slack-FF1493.svg)](http://sylius-devs.slack.com) [![Support](https://img.shields.io/badge/support-contact%20author-blue])](https://bitbag.io/contact-us/?utm_source=github&utm_medium=referral&utm_campaign=plugins_przelewy24)
@@ -45,10 +45,6 @@ This **open-source plugin was developed to help the Sylius community** and make 
 
 We work on stable, supported and up-to-date versions of packages. We recommend you to do the same.
 
-| Package | Version |
-| --- | --- |
-| PHP |  ^7.3 |
-| Sylius |  ^1.7 |
 ----
 
 
