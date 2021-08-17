@@ -41,17 +41,6 @@ This **open-source plugin was developed to help the Sylius community**. If you h
 
 ## Installation
 
-### Requirements
-
-We work on stable, supported and up-to-date versions of packages. We recommend you to do the same.
-
-| Package | Version |
-| --- | --- |
-| PHP |  ^7.3 |
-| Sylius |  ^1.7 |
-----
-
-
 ```
 $ composer require bitbag/przelewy24-plugin
 ```
