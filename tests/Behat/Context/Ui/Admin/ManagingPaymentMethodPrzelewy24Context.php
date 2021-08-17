@@ -19,11 +19,9 @@ use Tests\BitBag\SyliusPrzelewy24Plugin\Behat\Page\Admin\PaymentMethod\CreatePag
 
 final class ManagingPaymentMethodPrzelewy24Context implements Context
 {
-    /** @var CurrentPageResolverInterface */
-    private $currentPageResolver;
+    private CurrentPageResolverInterface $currentPageResolver;
 
-    /** @var CreatePageInterface */
-    private $createPage;
+    private CreatePageInterface $createPage;
 
     public function __construct(
         CurrentPageResolverInterface $currentPageResolver,

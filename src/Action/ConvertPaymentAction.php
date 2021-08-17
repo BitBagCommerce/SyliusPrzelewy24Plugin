@@ -25,8 +25,7 @@ final class ConvertPaymentAction implements ActionInterface
 {
     use GatewayAwareTrait;
 
-    /** @var PaymentDescriptionProviderInterface */
-    private $paymentDescriptionProvider;
+    private PaymentDescriptionProviderInterface $paymentDescriptionProvider;
 
     public function __construct(PaymentDescriptionProviderInterface $paymentDescriptionProvider)
     {

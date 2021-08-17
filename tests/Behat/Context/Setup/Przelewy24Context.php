@@ -14,48 +14,31 @@ namespace Tests\BitBag\SyliusPrzelewy24Plugin\Behat\Context\Setup;
 
 use Behat\Behat\Context\Context;
 use BitBag\SyliusPrzelewy24Plugin\Bridge\Przelewy24BridgeInterface;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Sylius\Behat\Service\SharedStorageInterface;
 use Sylius\Bundle\CoreBundle\Fixture\Factory\ExampleFactoryInterface;
 use Sylius\Component\Core\Model\PaymentMethodInterface;
 use Sylius\Component\Core\Repository\PaymentMethodRepositoryInterface;
-use Sylius\Component\Resource\Factory\FactoryInterface;
 
 final class Przelewy24Context implements Context
 {
-    /** @var SharedStorageInterface */
-    private $sharedStorage;
+    private SharedStorageInterface $sharedStorage;
 
-    /** @var PaymentMethodRepositoryInterface */
-    private $paymentMethodRepository;
+    private PaymentMethodRepositoryInterface $paymentMethodRepository;
 
-    /** @var ExampleFactoryInterface */
-    private $paymentMethodExampleFactory;
+    private ExampleFactoryInterface $paymentMethodExampleFactory;
 
-    /** @var FactoryInterface */
-    private $paymentMethodTranslationFactory;
+    private EntityManagerInterface $paymentMethodManager;
 
-    /** @var ObjectManager */
-    private $paymentMethodManager;
-
-    /**
-     * @param SharedStorageInterface $sharedStorage
-     * @param PaymentMethodRepositoryInterface $paymentMethodRepository
-     * @param ExampleFactoryInterface $paymentMethodExampleFactory
-     * @param FactoryInterface $paymentMethodTranslationFactory
-     * @param ObjectManager $paymentMethodManager
-     */
     public function __construct(
         SharedStorageInterface $sharedStorage,
         PaymentMethodRepositoryInterface $paymentMethodRepository,
         ExampleFactoryInterface $paymentMethodExampleFactory,
-        FactoryInterface $paymentMethodTranslationFactory,
-        ObjectManager $paymentMethodManager
+        EntityManagerInterface $paymentMethodManager
     ) {
         $this->sharedStorage = $sharedStorage;
         $this->paymentMethodRepository = $paymentMethodRepository;
         $this->paymentMethodExampleFactory = $paymentMethodExampleFactory;
-        $this->paymentMethodTranslationFactory = $paymentMethodTranslationFactory;
         $this->paymentMethodManager = $paymentMethodManager;
     }
 
@@ -77,21 +60,10 @@ final class Przelewy24Context implements Context
         $this->paymentMethodManager->flush();
     }
 
-    /**
-     * @param string $name
-     * @param string $code
-     * @param string $description
-     * @param bool $addForCurrentChannel
-     * @param int|null $position
-     *
-     * @return PaymentMethodInterface
-     */
     private function createPaymentMethod(
         string $name,
         string $code,
-        string $description = '',
-        bool $addForCurrentChannel = true,
-        int $position = null
+        string $description = ''
     ): PaymentMethodInterface {
         /** @var PaymentMethodInterface $paymentMethod */
         $paymentMethod = $this->paymentMethodExampleFactory->create([
@@ -101,12 +73,8 @@ final class Przelewy24Context implements Context
             'gatewayName' => 'przelewy24',
             'gatewayFactory' => 'przelewy24',
             'enabled' => true,
-            'channels' => ($addForCurrentChannel && $this->sharedStorage->has('channel')) ? [$this->sharedStorage->get('channel')] : [],
+            'channels' => $this->sharedStorage->has('channel') ? [$this->sharedStorage->get('channel')] : [],
         ]);
-
-        if (null !== $position) {
-            $paymentMethod->setPosition($position);
-        }
 
         $this->sharedStorage->set('payment_method', $paymentMethod);
         $this->paymentMethodRepository->add($paymentMethod);

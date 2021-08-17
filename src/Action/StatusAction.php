@@ -27,8 +27,7 @@ final class StatusAction implements ActionInterface, ApiAwareInterface, GatewayA
 {
     use GatewayAwareTrait;
 
-    /** @var Przelewy24BridgeInterface */
-    private $przelewy24Bridge;
+    private Przelewy24BridgeInterface $przelewy24Bridge;
 
     public function __construct(Przelewy24BridgeInterface $przelewy24Bridge)
     {
