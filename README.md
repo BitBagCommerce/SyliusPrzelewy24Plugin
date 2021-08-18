@@ -5,6 +5,10 @@
 
 [![](https://img.shields.io/packagist/l/bitbag/przelewy24-plugin.svg) ](https://packagist.org/packages/bitbag/przelewy24-plugin "License") [ ![](https://img.shields.io/packagist/v/bitbag/przelewy24-plugin.svg) ](https://packagist.org/packages/bitbag/przelewy24-plugin "Version") [ ![](https://img.shields.io/travis/BitBagCommerce/SyliusPrzelewy24Plugin/master.svg) ](http://travis-ci.org/BitBagCommerce/SyliusPrzelewy24Plugin "Build status") [ ![](https://img.shields.io/scrutinizer/g/BitBagCommerce/SyliusPrzelewy24Plugin.svg) ](https://scrutinizer-ci.com/g/BitBagCommerce/SyliusPrzelewy24Plugin/ "Scrutinizer") [![](https://poser.pugx.org/bitbag/przelewy24-plugin/downloads)](https://packagist.org/packages/bitbag/przelewy24-plugin "Total Downloads") [![Slack](https://img.shields.io/badge/community%20chat-slack-FF1493.svg)](http://sylius-devs.slack.com) [![Support](https://img.shields.io/badge/support-contact%20author-blue])](https://bitbag.io/contact-us/?utm_source=github&utm_medium=referral&utm_campaign=plugins_przelewy24)
 
+<p>
+ <img align="left" src="https://sylius.com/assets/badge-approved-by-sylius.png" width="85">
+</p> 
+
 At BitBag we do believe in open source. However, we are able to do it just because of our awesome clients, who are kind enough to share some parts of our work with the community. Therefore, if you feel like there is a possibility for us to work  together, feel free to reach out. You will find out more about our professional services, technologies, and contact details at [https://bitbag.io/](https://bitbag.io/contact-us/?utm_source=github&utm_medium=referral&utm_campaign=plugins_przelewy24).
 
 Like what we do? Want to join us? Check out our job listings on our [career page](https://bitbag.io/career/?utm_source=github&utm_medium=referral&utm_campaign=career). Not familiar with Symfony & Sylius yet, but still want to start with us? Join our [academy](https://bitbag.io/pl/akademia?utm_source=github&utm_medium=url&utm_campaign=akademia)!
