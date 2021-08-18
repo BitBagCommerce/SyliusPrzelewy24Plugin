@@ -3,9 +3,7 @@ imports:
     - { resource: "../../../vendor/sylius/sylius/src/Sylius/Behat/Resources/config/services.xml" }
 
 services:
-    bitbag.test.client: '@test.client'
-    bitbag.test.client.history: '@test.client.history'
-    bitbag.test.client.cookiejar: '@test.client.cookiejar'
+    Symfony\Component\BrowserKit\AbstractBrowser: '@test.client'
 
     bitbag_sylius_przelewy24_plugin.bridge.przelewy24:
         class: Tests\BitBag\SyliusPrzelewy24Plugin\Behat\Service\Mocker\Przelewy24Bridge

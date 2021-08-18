@@ -14,17 +14,13 @@ use GuzzleHttp\ClientInterface;
 
 final class Przelewy24Bridge implements Przelewy24BridgeInterface
 {
-    /** @var string */
-    private $merchantId;
+    private string $merchantId = '';
 
-    /** @var string */
-    private $crcKey;
+    private string $crcKey = '';
 
-    /** @var string */
-    private $environment = self::SANDBOX_ENVIRONMENT;
+    private string $environment = self::SANDBOX_ENVIRONMENT;
 
-    /** @var ClientInterface */
-    private $client;
+    private ClientInterface $client;
 
     public function __construct(ClientInterface $client)
     {

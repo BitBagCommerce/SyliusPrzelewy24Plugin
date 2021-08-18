@@ -15,8 +15,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
 final class Przelewy24Bridge implements Przelewy24BridgeInterface
 {
-    /** @var ContainerInterface */
-    private $container;
+    private ContainerInterface $container;
 
     public function __construct(ContainerInterface $container)
     {

@@ -1,6 +1,6 @@
 # [![](https://bitbag.io/wp-content/uploads/2020/10/przelewy24-1024x535.png)](https://bitbag.io/contact-us/?utm_source=github&utm_medium=referral&utm_campaign=plugins_przelewy24)
 
-# Przelewy24 Payment Gateway Plugin for Sylius
+# BitBag SyliusPrzelewy24Plugin
 ----
 
 [![](https://img.shields.io/packagist/l/bitbag/przelewy24-plugin.svg) ](https://packagist.org/packages/bitbag/przelewy24-plugin "License") [ ![](https://img.shields.io/packagist/v/bitbag/przelewy24-plugin.svg) ](https://packagist.org/packages/bitbag/przelewy24-plugin "Version") [ ![](https://img.shields.io/travis/BitBagCommerce/SyliusPrzelewy24Plugin/master.svg) ](http://travis-ci.org/BitBagCommerce/SyliusPrzelewy24Plugin "Build status") [ ![](https://img.shields.io/scrutinizer/g/BitBagCommerce/SyliusPrzelewy24Plugin.svg) ](https://scrutinizer-ci.com/g/BitBagCommerce/SyliusPrzelewy24Plugin/ "Scrutinizer") [![](https://poser.pugx.org/bitbag/przelewy24-plugin/downloads)](https://packagist.org/packages/bitbag/przelewy24-plugin "Total Downloads") [![Slack](https://img.shields.io/badge/community%20chat-slack-FF1493.svg)](http://sylius-devs.slack.com) [![Support](https://img.shields.io/badge/support-contact%20author-blue])](https://bitbag.io/contact-us/?utm_source=github&utm_medium=referral&utm_campaign=plugins_przelewy24)
@@ -14,7 +14,7 @@ Like what we do? Want to join us? Check out our job listings on our [career page
 
 ***
 
-* [Overwiev](#overwiev)
+* [Overview](#overview)
 * [Support](#we-are-here-to-help)
 * [Installation](#installation)
   * [Requirements](#requirements)
@@ -28,7 +28,7 @@ Like what we do? Want to join us? Check out our job listings on our [career page
 * [License](#license)
 * [Contact](#contact)
 
-# Overwiev
+# Overview
 
 ***
 
@@ -51,7 +51,7 @@ Add plugin dependencies to your `config/bundles.php` file:
 return [
     ...
 
-    BitBag\SyliusPrzelewy24Plugin\BitBagSyliusPrzelewy24Plugin::class => [<span class="hljs-string">'all'</span> => <span class="hljs-keyword">true</span>],
+    BitBag\SyliusPrzelewy24Plugin\BitBagSyliusPrzelewy24Plugin::class => ['all' => true],
 ];
 ```
 
@@ -69,16 +69,15 @@ $ bin/console debug:container bitbag_sylius_przelewy24_plugin
 
 ```
 $ composer install
-$ <span class="hljs-built_in">cd</span> tests/Application
+$ cd tests/Application
 $ yarn install
-$ yarn run gulp
 $ yarn build
-$ bin/console assets:install <span class="hljs-operator">-e</span> <span class="hljs-built_in">test</span>
-$ bin/console doctrine:database:create <span class="hljs-operator">-e</span> <span class="hljs-built_in">test</span>
-$ bin/console doctrine:schema:create <span class="hljs-operator">-e</span> <span class="hljs-built_in">test</span>
-$ bin/console server:run <span class="hljs-number">127.0</span>.<span class="hljs-number">0.1</span>:<span class="hljs-number">8080</span> <span class="hljs-operator">-e</span> <span class="hljs-built_in">test</span>
-$ open http://localhost:<span class="hljs-number">8080</span>
-$ <span class="hljs-built_in">cd</span> ../..
+$ symfony console assets:install -e test
+$ symfony console doctrine:database:create -e test
+$ symfony console doctrine:schema:create -e test
+$ symfony console server:start -d --port=8080 -e test
+$ open http://localhost:8080
+$ cd ../..
 $ vendor/bin/behat
 $ vendor/bin/phpspec run
 ```

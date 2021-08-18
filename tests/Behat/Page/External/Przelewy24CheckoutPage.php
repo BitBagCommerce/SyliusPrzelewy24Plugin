@@ -19,22 +19,17 @@ use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Sylius\Component\Core\Model\PaymentInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Symfony\Component\BrowserKit\AbstractBrowser;
-use Symfony\Component\BrowserKit\Client;
 use Tests\BitBag\SyliusPrzelewy24Plugin\Behat\Service\Mocker\Przelewy24ApiMocker;
 
 final class Przelewy24CheckoutPage extends Page implements Przelewy24CheckoutPageInterface
 {
-    /** @var Przelewy24ApiMocker */
-    private $przelewy24ApiMocker;
+    private Przelewy24ApiMocker $przelewy24ApiMocker;
 
-    /** @var RepositoryInterface */
-    private $securityTokenRepository;
+    private RepositoryInterface $securityTokenRepository;
 
-    /** @var EntityRepository */
-    private $paymentRepository;
+    private EntityRepository $paymentRepository;
 
-    /** @var Client */
-    private $client;
+    private AbstractBrowser $client;
 
     public function __construct(
         Session $session,
@@ -65,7 +60,7 @@ final class Przelewy24CheckoutPage extends Page implements Przelewy24CheckoutPag
             'p24_currency' => 'test',
         ];
 
-        $this->przelewy24ApiMocker->mockApiSuccessfulVerifyTransaction(function () use ($notifyToken, $postData, $captureToken) {
+        $this->przelewy24ApiMocker->mockApiSuccessfulVerifyTransaction(function () use ($notifyToken, $postData, $captureToken): void {
             $this->client->request('POST', $notifyToken->getTargetUrl(), $postData);
             $this->getDriver()->visit($captureToken->getTargetUrl());
         });

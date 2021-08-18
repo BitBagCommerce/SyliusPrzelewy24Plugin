@@ -13,44 +13,28 @@ namespace Tests\BitBag\SyliusPrzelewy24Plugin\Behat\Context\Ui\Shop;
 use Behat\Behat\Context\Context;
 use Sylius\Behat\Page\Shop\Checkout\CompletePageInterface;
 use Sylius\Behat\Page\Shop\Order\ShowPageInterface;
-use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Tests\BitBag\SyliusPrzelewy24Plugin\Behat\Page\External\Przelewy24CheckoutPageInterface;
 use Tests\BitBag\SyliusPrzelewy24Plugin\Behat\Service\Mocker\Przelewy24ApiMocker;
 
 final class Przelewy24CheckoutContext implements Context
 {
-    /** @var CompletePageInterface */
-    private $summaryPage;
+    private CompletePageInterface $summaryPage;
 
-    /** @var Przelewy24CheckoutPageInterface */
-    private $przelewy24CheckoutPage;
+    private Przelewy24CheckoutPageInterface $przelewy24CheckoutPage;
 
-    /** @var ShowPageInterface */
-    private $orderDetails;
+    private ShowPageInterface $orderDetails;
 
-    /** @var EntityRepository */
-    private $paymentRepository;
+    private Przelewy24ApiMocker $przelewy24ApiMocker;
 
-    /** @var Przelewy24ApiMocker */
-    private $przelewy24ApiMocker;
-
-    /**
-     * @param CompletePageInterface $summaryPage
-     * @param Przelewy24CheckoutPageInterface $przelewy24CheckoutPage
-     * @param ShowPageInterface $orderDetails
-     * @param EntityRepository $paymentRepository
-     */
     public function __construct(
         CompletePageInterface $summaryPage,
         Przelewy24CheckoutPageInterface $przelewy24CheckoutPage,
         ShowPageInterface $orderDetails,
-        EntityRepository $paymentRepository,
         Przelewy24ApiMocker $przelewy24ApiMocker
     ) {
         $this->summaryPage = $summaryPage;
         $this->przelewy24CheckoutPage = $przelewy24CheckoutPage;
         $this->orderDetails = $orderDetails;
-        $this->paymentRepository = $paymentRepository;
         $this->przelewy24ApiMocker = $przelewy24ApiMocker;
     }
 
@@ -60,20 +44,17 @@ final class Przelewy24CheckoutContext implements Context
      */
     public function iConfirmMyOrderWithPrzelewy24Payment(): void
     {
-        $this->przelewy24ApiMocker->mockApiSuccessfulVerifyTransaction(function () {
+        $this->przelewy24ApiMocker->mockApiSuccessfulVerifyTransaction(function (): void {
             $this->summaryPage->confirmOrder();
         });
     }
 
     /**
      * @When I sign in to Przelewy24 and pay successfully
-     *
-     * @throws \Behat\Mink\Exception\DriverException
-     * @throws \Behat\Mink\Exception\UnsupportedDriverActionException
      */
     public function iSignInToPrzelewy24AndPaySuccessfully(): void
     {
-        $this->przelewy24ApiMocker->mockApiSuccessfulVerifyTransaction(function () {
+        $this->przelewy24ApiMocker->mockApiSuccessfulVerifyTransaction(function (): void {
             $this->przelewy24CheckoutPage->pay();
         });
     }
@@ -83,7 +64,7 @@ final class Przelewy24CheckoutContext implements Context
      */
     public function iTryToPayAgainPrzelewy24Payment(): void
     {
-        $this->przelewy24ApiMocker->mockApiSuccessfulVerifyTransaction(function () {
+        $this->przelewy24ApiMocker->mockApiSuccessfulVerifyTransaction(function (): void {
             $this->orderDetails->pay();
         });
     }
@@ -94,7 +75,7 @@ final class Przelewy24CheckoutContext implements Context
      */
     public function iFailedMyPrzelewy24Payment(): void
     {
-        $this->przelewy24ApiMocker->mockApiSuccessfulVerifyTransaction(function () {
+        $this->przelewy24ApiMocker->mockApiSuccessfulVerifyTransaction(function (): void {
             $this->przelewy24CheckoutPage->failedPayment();
         });
     }

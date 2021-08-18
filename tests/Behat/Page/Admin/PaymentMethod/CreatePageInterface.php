@@ -16,7 +16,7 @@ interface CreatePageInterface extends BaseCreatePageInterface
 {
     public function setEnvironment(string $environment): void;
 
-    public function setMerchantId(string $merchantid): void;
+    public function setMerchantId(string $merchantId): void;
 
     public function setCrcKey(string $crcKey): void;
 }
