@@ -21,8 +21,7 @@ At BitBag we do believe in open source. However, we are able to do it just becau
   * [Testing](#testing)
 * [About us](#about-us)
   * [Community](#community)
-* [Demo Sylius shop](#demo-sylius-shop)
-* [Additional Sylius resources for developers](#additional-resources-for-developers)
+* [Demo](#demo-sylius-shop)
 * [License](#license)
 * [Contact](#contact)
 
