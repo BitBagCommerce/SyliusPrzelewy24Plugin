@@ -97,7 +97,7 @@ final class Przelewy24Bridge implements Przelewy24BridgeInterface
 
         $posData['p24_sign'] = $sign;
 
-        return (int) $this->request($posData, $this->getTrnVerifyUrl())['error'] === 0;
+        return 0 === (int) $this->request($posData, $this->getTrnVerifyUrl())['error'];
     }
 
     public function request(array $posData, string $url): array
@@ -112,7 +112,7 @@ final class Przelewy24Bridge implements Przelewy24BridgeInterface
             $result[trim($value[0])] = $value[1] ?? null;
         }
 
-        if (!isset($result['error']) || $result['error'] > 0) {
+        if (!isset($result['error']) || 0 < $result['error']) {
             throw new \Exception($response);
         }
 

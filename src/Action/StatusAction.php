@@ -53,7 +53,7 @@ final class StatusAction implements ActionInterface, ApiAwareInterface, GatewayA
         $this->gateway->execute($httpRequest = new GetHttpRequest());
 
         if (isset($httpRequest->query['status']) &&
-            $httpRequest->query['status'] === Przelewy24BridgeInterface::CANCELLED_STATUS
+            Przelewy24BridgeInterface::CANCELLED_STATUS === $httpRequest->query['status']
         ) {
             $details['p24_status'] = Przelewy24BridgeInterface::CANCELLED_STATUS;
             $request->markCanceled();
