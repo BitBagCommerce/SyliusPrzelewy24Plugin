@@ -18,7 +18,6 @@ use Payum\Core\Security\TokenInterface;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
 use Sylius\Component\Core\Model\PaymentInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
-use Symfony\Component\BrowserKit\AbstractBrowser;
 use Tests\BitBag\SyliusPrzelewy24Plugin\Behat\Service\Mocker\Przelewy24ApiMocker;
 
 final class Przelewy24CheckoutPage extends Page implements Przelewy24CheckoutPageInterface
@@ -29,22 +28,19 @@ final class Przelewy24CheckoutPage extends Page implements Przelewy24CheckoutPag
 
     private EntityRepository $paymentRepository;
 
-    private AbstractBrowser $client;
 
     public function __construct(
         Session $session,
         MinkParameters $parameters,
         Przelewy24ApiMocker $przelewy24ApiMocker,
         RepositoryInterface $securityTokenRepository,
-        EntityRepository $paymentRepository,
-        AbstractBrowser $client
+        EntityRepository $paymentRepository
     ) {
         parent::__construct($session, $parameters);
 
         $this->przelewy24ApiMocker = $przelewy24ApiMocker;
         $this->paymentRepository = $paymentRepository;
         $this->securityTokenRepository = $securityTokenRepository;
-        $this->client = $client;
     }
 
     public function pay(): void
@@ -61,7 +57,7 @@ final class Przelewy24CheckoutPage extends Page implements Przelewy24CheckoutPag
         ];
 
         $this->przelewy24ApiMocker->mockApiSuccessfulVerifyTransaction(function () use ($notifyToken, $postData, $captureToken): void {
-            $this->client->request('POST', $notifyToken->getTargetUrl(), $postData);
+            $this->getDriver()->getClient()->request('POST', $notifyToken->getTargetUrl(), $postData);
             $this->getDriver()->visit($captureToken->getTargetUrl());
         });
     }

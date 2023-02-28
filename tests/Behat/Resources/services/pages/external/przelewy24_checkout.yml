@@ -7,4 +7,3 @@ services:
             - "@bitbag_sylius_przelewy24_plugin.mocker.przelewy24_api"
             - "@sylius.repository.payment_security_token"
             - "@sylius.repository.payment"
-            - "@test.client"
