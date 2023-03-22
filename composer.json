@@ -52,11 +52,11 @@
     },
     "config": {
         "allow-plugins": {
+            "symfony/flex": true,
             "symfony/thanks": true,
             "composer/package-versions-deprecated": true,
             "dealerdirect/phpcodesniffer-composer-installer": true,
-            "phpstan/extension-installer": true,
-            "symfony/flex": true
+            "phpstan/extension-installer": true
         }
     }
 }
