@@ -24,7 +24,7 @@ jobs:
         symfony: ["^5.4", "^6.0"]
         sylius: ["~1.11.0", "~1.12.0"]
         node: ["^14.17.x"]
-        mysql: ["8.0"]
+        mysql: ["5.7.", "8.0"]
 
         exclude:
           - sylius: ~1.11.0
@@ -58,12 +58,12 @@ jobs:
           mysql version: "${{ matrix.mysql }}"
           mysql root password: "root"
 
-      - name: Configure sysctl limits
-        run: |
-          sudo swapoff -a
-          sudo sysctl -w vm.swappiness=1
-          sudo sysctl -w fs.file-max=262144
-          sudo sysctl -w vm.max_map_count=262144
+#      - name: Configure sysctl limits
+#        run: |
+#          sudo swapoff -a
+#          sudo sysctl -w vm.swappiness=1
+#          sudo sysctl -w fs.file-max=262144
+#          sudo sysctl -w vm.max_map_count=262144
 
       - name: Output PHP version for Symfony CLI
         run: php -v | head -n 1 | awk '{ print $2 }' > .php-version
