@@ -13,7 +13,7 @@ on:
 
 jobs:
   tests:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-22.04
 
     name: "Sylius ${{ matrix.sylius }}, PHP ${{ matrix.php }}, Symfony ${{ matrix.symfony }}, MySQL ${{ matrix.mysql }}"
 
@@ -58,12 +58,12 @@ jobs:
           mysql version: "${{ matrix.mysql }}"
           mysql root password: "root"
 
-#      - name: Configure sysctl limits
-#        run: |
-#          sudo swapoff -a
-#          sudo sysctl -w vm.swappiness=1
-#          sudo sysctl -w fs.file-max=262144
-#          sudo sysctl -w vm.max_map_count=262144
+      - name: Configure sysctl limits
+        run: |
+          sudo swapoff -a
+          sudo sysctl -w vm.swappiness=1
+          sudo sysctl -w fs.file-max=262144
+          sudo sysctl -w vm.max_map_count=262144
 
       - name: Output PHP version for Symfony CLI
         run: php -v | head -n 1 | awk '{ print $2 }' > .php-version
