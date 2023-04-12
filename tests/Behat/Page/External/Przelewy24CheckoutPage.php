@@ -61,7 +61,7 @@ final class Przelewy24CheckoutPage extends Page implements Przelewy24CheckoutPag
         ];
 
         $this->przelewy24ApiMocker->mockApiSuccessfulVerifyTransaction(function () use ($notifyToken, $postData, $captureToken): void {
-            $this->client->request('POST', $notifyToken->getTargetUrl(), $postData);
+            $this->getDriver()->getClient()->request('POST', $notifyToken->getTargetUrl(), $postData);
             $this->getDriver()->visit($captureToken->getTargetUrl());
         });
     }

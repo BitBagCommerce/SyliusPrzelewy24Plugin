@@ -8,7 +8,7 @@
 
 declare(strict_types=1);
 
-namespace spec\BitBag\SyliusPrzelewy24Plugin\Action;
+namespace spec\BitBag\SyliusPrzelewy24Plugin;
 
 use BitBag\SyliusPrzelewy24Plugin\Przelewy24GatewayFactory;
 use Payum\Core\GatewayFactory;
