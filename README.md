@@ -72,7 +72,7 @@ $ bin/console debug:container bitbag_sylius_przelewy24_plugin
 $ composer install
 $ cd tests/Application
 $ yarn install
-$ yarn build
+$ yarn encore dev
 $ symfony console assets:install -e test
 $ symfony console doctrine:database:create -e test
 $ symfony console doctrine:schema:create -e test
