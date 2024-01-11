@@ -80,7 +80,7 @@ final class ConvertPaymentAction implements ActionInterface
         }
 
         if (null !== $address = $order->getShippingAddress()) {
-            $customerData['p24_adress'] = $address->getStreet();
+            $customerData['p24_address'] = $address->getStreet();
             $customerData['p24_zip'] = $address->getPostcode();
             $customerData['p24_country'] = $address->getCountryCode();
             $customerData['p24_phone'] = $address->getPhoneNumber();
