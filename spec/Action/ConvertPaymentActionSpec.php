@@ -50,48 +50,48 @@ final class ConvertPaymentActionSpec extends ObjectBehavior
         OrderItemInterface $orderItem,
         ProductInterface $product
     ): void {
-    $customer->getEmail()->willReturn('user@example.com');
-    $customer->getId()->willReturn(1);
+        $customer->getEmail()->willReturn('user@example.com');
+        $customer->getId()->willReturn(1);
 
-    $orderItem->getProduct()->willReturn($product);
-    $orderItem->getQuantity()->willReturn(1);
-    $orderItem->getUnitPrice()->willReturn(445535);
-    $arrayIterator->valid()->willReturn(true, false);
-    $arrayIterator->current()->willReturn($orderItem);
-    $arrayIterator->next()->shouldBeCalled();
-    $arrayIterator->rewind()->shouldBeCalled();
+        $orderItem->getProduct()->willReturn($product);
+        $orderItem->getQuantity()->willReturn(1);
+        $orderItem->getUnitPrice()->willReturn(445535);
+        $arrayIterator->valid()->willReturn(true, false);
+        $arrayIterator->current()->willReturn($orderItem);
+        $arrayIterator->next()->shouldBeCalled();
+        $arrayIterator->rewind()->shouldBeCalled();
 
-    $items->getIterator()->willReturn($arrayIterator);
+        $items->getIterator()->willReturn($arrayIterator);
 
-    $order->getNumber()->willReturn(000001);
-    $order->getCustomer()->willReturn($customer);
-    $order->getLocaleCode()->willReturn('pl_PL');
-    $order->getCurrencyCode()->willReturn('USD');
-    $order->getShippingAddress()->willReturn(null);
-    $order->getItems()->willReturn($items);
+        $order->getNumber()->willReturn(000001);
+        $order->getCustomer()->willReturn($customer);
+        $order->getLocaleCode()->willReturn('pl_PL');
+        $order->getCurrencyCode()->willReturn('USD');
+        $order->getShippingAddress()->willReturn(null);
+        $order->getItems()->willReturn($items);
 
-    $payment->getOrder()->willReturn($order);
-    $payment->getId()->willReturn(1);
-    $payment->getAmount()->willReturn(445535);
-    $payment->getCurrencyCode()->willReturn('PLN');
+        $payment->getOrder()->willReturn($order);
+        $payment->getId()->willReturn(1);
+        $payment->getAmount()->willReturn(445535);
+        $payment->getCurrencyCode()->willReturn('PLN');
 
-    $paymentDescriptionProvider->getPaymentDescription($payment)->willReturn('description');
+        $paymentDescriptionProvider->getPaymentDescription($payment)->willReturn('description');
 
-    $request->getSource()->willReturn($payment);
-    $request->getTo()->willReturn('array');
-    $request->setResult([
-        'p24_amount' => 445535,
-        'p24_currency' => 'PLN',
-        'p24_description' => 'description',
-        'p24_language' => 'pl_PL',
-        'p24_email' => 'user@example.com',
-        'p24_name_1' => null,
-        'p24_quantity_1' => 1,
-        'p24_price_1' => 445535
-    ])->shouldBeCalled();
+        $request->getSource()->willReturn($payment);
+        $request->getTo()->willReturn('array');
+        $request->setResult([
+            'p24_amount' => 445535,
+            'p24_currency' => 'PLN',
+            'p24_description' => 'description',
+            'p24_language' => 'pl_PL',
+            'p24_email' => 'user@example.com',
+            'p24_name_1' => null,
+            'p24_quantity_1' => 1,
+            'p24_price_1' => 445535
+        ])->shouldBeCalled();
 
-    $this->execute($request);
-}
+        $this->execute($request);
+    }
 
     function it_supports_only_convert_request_payment_source_and_array_to(
         Convert $request,
