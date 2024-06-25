@@ -10,7 +10,8 @@ declare(strict_types=1);
 
 namespace BitBag\SyliusPrzelewy24Plugin\Bridge;
 
-use GuzzleHttp\ClientInterface;
+use GuzzleHttp\ClientInterface as DeprecatedClientInterface;
+use Psr\Http\Client\ClientInterface;
 
 final class Przelewy24Bridge implements Przelewy24BridgeInterface
 {
@@ -20,11 +21,9 @@ final class Przelewy24Bridge implements Przelewy24BridgeInterface
 
     private string $environment = self::SANDBOX_ENVIRONMENT;
 
-    private ClientInterface $client;
-
-    public function __construct(ClientInterface $client)
-    {
-        $this->client = $client;
+    public function __construct(
+        private ClientInterface|DeprecatedClientInterface $client,
+    ) {
     }
 
     public function setAuthorizationData(
