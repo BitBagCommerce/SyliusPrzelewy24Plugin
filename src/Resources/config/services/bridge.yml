@@ -1,6 +1,10 @@
 services:
+    bitbag_sylius_przelewy24_plugin.http_client:
+        class: GuzzleHttp\Client
+        public: false
+
     bitbag_sylius_przelewy24_plugin.bridge.przelewy24:
         class: BitBag\SyliusPrzelewy24Plugin\Bridge\Przelewy24Bridge
         public: true
         arguments:
-            - "@sylius.http_client"
+            - "@bitbag_sylius_przelewy24_plugin.http_client"
