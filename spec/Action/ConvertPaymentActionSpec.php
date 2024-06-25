@@ -18,7 +18,9 @@ use PhpSpec\ObjectBehavior;
 use Sylius\Bundle\PayumBundle\Provider\PaymentDescriptionProviderInterface;
 use Sylius\Component\Core\Model\CustomerInterface;
 use Sylius\Component\Core\Model\OrderInterface;
+use Sylius\Component\Core\Model\OrderItemInterface;
 use Sylius\Component\Core\Model\PaymentInterface;
+use Sylius\Component\Core\Model\ProductInterface;
 
 final class ConvertPaymentActionSpec extends ObjectBehavior
 {
@@ -44,10 +46,20 @@ final class ConvertPaymentActionSpec extends ObjectBehavior
         CustomerInterface $customer,
         ArrayCollection $items,
         \ArrayIterator $arrayIterator,
-        PaymentDescriptionProviderInterface $paymentDescriptionProvider
+        PaymentDescriptionProviderInterface $paymentDescriptionProvider,
+        OrderItemInterface $orderItem,
+        ProductInterface $product
     ): void {
         $customer->getEmail()->willReturn('user@example.com');
         $customer->getId()->willReturn(1);
+
+        $orderItem->getProduct()->willReturn($product);
+        $orderItem->getQuantity()->willReturn(1);
+        $orderItem->getUnitPrice()->willReturn(445535);
+        $arrayIterator->valid()->willReturn(true, false);
+        $arrayIterator->current()->willReturn($orderItem);
+        $arrayIterator->next()->shouldBeCalled();
+        $arrayIterator->rewind()->shouldBeCalled();
 
         $items->getIterator()->willReturn($arrayIterator);
 
@@ -73,6 +85,9 @@ final class ConvertPaymentActionSpec extends ObjectBehavior
             'p24_description' => 'description',
             'p24_language' => 'pl_PL',
             'p24_email' => 'user@example.com',
+            'p24_name_1' => null,
+            'p24_quantity_1' => 1,
+            'p24_price_1' => 445535
         ])->shouldBeCalled();
 
         $this->execute($request);
