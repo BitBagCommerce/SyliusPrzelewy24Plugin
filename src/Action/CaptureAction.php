@@ -56,7 +56,7 @@ final class CaptureAction implements ActionInterface, ApiAwareInterface, Generic
 
         $details = $request->getModel();
 
-        if (isset($details['p24_status'])) {
+        if (isset($details['p24_status']) && $details['p24_status'] !== Przelewy24BridgeInterface::CREATED_STATUS) {
             return;
         }
 
