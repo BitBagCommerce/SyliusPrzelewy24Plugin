@@ -27,6 +27,6 @@ services:
         class: BitBag\SyliusPrzelewy24Plugin\Action\ConvertPaymentAction
         public: true
         arguments:
-            - "@sylius.payment_description_provider"
+            - "@sylius_payum.provider.payment_description"
         tags:
             - { name: payum.action, factory: przelewy24, alias: payum.action.convert_payment }
