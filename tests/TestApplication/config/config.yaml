@@ -1,0 +1,3 @@
+imports:
+#     - { resource: "@SyliusPrzelewy24Plugin/config/config.yaml" }
+    - { resource: "services_test.php" }

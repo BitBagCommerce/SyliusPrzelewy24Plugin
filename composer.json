@@ -8,7 +8,20 @@
         "php": "^8.2",
         "sylius/sylius": "^2.0",
         "php-http/message-factory": "^1.1",
-        "league/flysystem-bundle": "^3.4"
+        "league/flysystem-bundle": "^3.4",
+        "winzou/state-machine": "^0.4.4",
+        "winzou/state-machine-bundle": "^0.6.2",
+        "sonata-project/block-bundle": "^5.2",
+        "jms/serializer": "^3.32.5",
+        "jms/serializer-bundle": "^5.5",
+        "friendsofsymfony/rest-bundle": "^3.8",
+        "api-platform/doctrine-orm": "^v4.1.7",
+        "api-platform/symfony": "^v4.1.7",
+        "sylius/twig-hooks": "^0.6.1",
+        "symfony/ux-icons": "^2.25",
+        "symfony/ux-twig-component": "^2.25",
+        "nyholm/psr7": "^1.8",
+        "sylius/test-application": "2.0.x-dev"
     },
     "require-dev": {
         "symfony/webpack-encore-bundle": "^2.1",
@@ -44,14 +57,13 @@
     "autoload": {
         "psr-4": {
             "BitBag\\SyliusPrzelewy24Plugin\\": "src/",
-            "Tests\\BitBag\\SyliusPrzelewy24Plugin\\": "tests/"
+            "Tests\\BitBag\\SyliusPrzelewy24Plugin\\TestApplication\\": "tests/TestApplication/src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
             "spec\\BitBag\\SyliusPrzelewy24Plugin\\": "spec/"
-        },
-        "classmap": ["tests/Application/Kernel.php"]
+        }
     },
     "conflict": {
         "symfony/framework-bundle": "6.2.8",
@@ -62,9 +74,23 @@
             "symfony/flex": true,
             "symfony/thanks": true,
             "composer/package-versions-deprecated": true,
-            "dealerdirect/phpcodesniffer-composer-installer": true,
+            "dealerdirect/phpcodesniffer-composer-installer": false,
             "phpstan/extension-installer": true,
-            "php-http/discovery": true
+            "php-http/discovery": false,
+            "symfony/runtime": true
         }
-    }
+    },
+    "extra": {
+        "symfony": {
+            "allow-contrib": false,
+            "require": "^7.1"
+        },
+        "public-dir": "vendor/sylius/test-application/public"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/Sylius/TestApplication"
+        }
+    ]
 }
