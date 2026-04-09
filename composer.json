@@ -17,12 +17,13 @@
         "friendsofsymfony/rest-bundle": "^3.8",
         "api-platform/doctrine-orm": "^v4.1.7",
         "api-platform/symfony": "^v4.1.7",
-        "sylius/twig-hooks": "^0.9.1",
+        "sylius/twig-hooks": "^0.6 || ^0.9",
         "symfony/ux-icons": "^2.25",
         "symfony/ux-twig-component": "^2.25",
         "nyholm/psr7": "^1.8"
     },
     "require-dev": {
+        "sylius/test-application": "2.2.x-dev",
         "symfony/webpack-encore-bundle": "^2.1",
         "behat/behat": "^3.6.1",
         "behat/mink-selenium2-driver": "1.7",
@@ -47,8 +48,8 @@
         "symfony/browser-kit": "^5.4 || ^6.0",
         "symfony/debug-bundle": "^5.4 || ^6.0",
         "symfony/dotenv": "^5.4 || ^6.0",
-        "symfony/intl": "^5.4 || ^6.0",
-        "symfony/web-profiler-bundle": "^4.4 || ^5.2 || ^5.4 || ^6.0",
+        "symfony/intl": "^5.4 || ^6.0 || ^7.0",
+        "symfony/web-profiler-bundle": "^4.4 || ^5.2 || ^5.4 || ^6.0 || ^7.0",
         "polishsymfonycommunity/symfony-mocker-container": "^1.0",
         "bitbag/coding-standard": "^1.0"
     },
