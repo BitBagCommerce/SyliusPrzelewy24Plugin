@@ -20,10 +20,10 @@
         "sylius/twig-hooks": "^0.9.1",
         "symfony/ux-icons": "^2.25",
         "symfony/ux-twig-component": "^2.25",
-        "nyholm/psr7": "^1.8",
-        "sylius/test-application": "2.0.x-dev"
+        "nyholm/psr7": "^1.8"
     },
     "require-dev": {
+        "sylius/test-application": "2.0.x-dev",
         "symfony/webpack-encore-bundle": "^2.1",
         "behat/behat": "^3.6.1",
         "behat/mink-selenium2-driver": "1.4",
