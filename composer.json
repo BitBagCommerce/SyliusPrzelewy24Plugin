@@ -17,7 +17,7 @@
         "friendsofsymfony/rest-bundle": "^3.8",
         "api-platform/doctrine-orm": "^v4.1.7",
         "api-platform/symfony": "^v4.1.7",
-        "sylius/twig-hooks": "^0.6.1",
+        "sylius/twig-hooks": "^0.9.1",
         "symfony/ux-icons": "^2.25",
         "symfony/ux-twig-component": "^2.25",
         "nyholm/psr7": "^1.8",
