@@ -11,7 +11,6 @@
         "league/flysystem-bundle": "^3.4",
         "winzou/state-machine": "^0.4.4",
         "winzou/state-machine-bundle": "^0.6.2",
-        "sonata-project/block-bundle": "^5.2",
         "jms/serializer": "^3.32.5",
         "jms/serializer-bundle": "^5.5",
         "friendsofsymfony/rest-bundle": "^3.8",
