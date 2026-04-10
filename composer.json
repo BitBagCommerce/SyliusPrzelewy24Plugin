@@ -17,16 +17,16 @@
         "friendsofsymfony/rest-bundle": "^3.8",
         "api-platform/doctrine-orm": "^v4.1.7",
         "api-platform/symfony": "^v4.1.7",
-        "sylius/twig-hooks": "^0.6.1",
+        "sylius/twig-hooks": "^0.6 || ^0.9",
         "symfony/ux-icons": "^2.25",
         "symfony/ux-twig-component": "^2.25",
-        "nyholm/psr7": "^1.8",
-        "sylius/test-application": "2.0.x-dev"
+        "nyholm/psr7": "^1.8"
     },
     "require-dev": {
+        "sylius/test-application": "2.2.x-dev",
         "symfony/webpack-encore-bundle": "^2.1",
         "behat/behat": "^3.6.1",
-        "behat/mink-selenium2-driver": "1.4",
+        "behat/mink-selenium2-driver": "1.7",
         "dmore/behat-chrome-extension": "^1.3",
         "dmore/chrome-mink-driver": "^2.7",
         "friends-of-behat/mink": "^1.8",
@@ -37,7 +37,7 @@
         "friends-of-behat/suite-settings-extension": "^1.0",
         "friends-of-behat/symfony-extension": "^2.1",
         "friends-of-behat/variadic-extension": "^1.3",
-        "phpspec/phpspec": "^7.0",
+        "phpspec/phpspec": "^8.0",
         "phpstan/extension-installer": "^1.0",
         "phpstan/phpstan": "0.12.88",
         "phpstan/phpstan-doctrine": "0.12.37",
@@ -48,8 +48,8 @@
         "symfony/browser-kit": "^5.4 || ^6.0",
         "symfony/debug-bundle": "^5.4 || ^6.0",
         "symfony/dotenv": "^5.4 || ^6.0",
-        "symfony/intl": "^5.4 || ^6.0",
-        "symfony/web-profiler-bundle": "^4.4 || ^5.2 || ^5.4 || ^6.0",
+        "symfony/intl": "^5.4 || ^6.0 || ^7.0",
+        "symfony/web-profiler-bundle": "^4.4 || ^5.2 || ^5.4 || ^6.0 || ^7.0",
         "polishsymfonycommunity/symfony-mocker-container": "^1.0",
         "bitbag/coding-standard": "^1.0"
     },
@@ -66,8 +66,7 @@
         }
     },
     "conflict": {
-        "symfony/framework-bundle": "6.2.8",
-        "behat/mink-selenium2-driver": ">=1.7.0"
+        "symfony/framework-bundle": "6.2.8"
     },
     "config": {
         "allow-plugins": {
