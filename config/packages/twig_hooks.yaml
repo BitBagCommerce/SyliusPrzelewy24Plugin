@@ -1,10 +1,10 @@
 sylius_twig_hooks:
     hooks:
-        'sylius_admin.payment_method.create.content.form.sections.gateway_configuration':
+        'sylius_admin.payment_method.create.content.form.sections.gateway_configuration.przelewy24':
             przelewy24:
                 template: '@BitBagSyliusPrzelewy24Plugin/Admin/payment_method/form/sections/gateway_configuration/przelewy24.html.twig'
                 priority: 0
-        'sylius_admin.payment_method.update.content.form.sections.gateway_configuration':
+        'sylius_admin.payment_method.update.content.form.sections.gateway_configuration.przelewy24':
             przelewy24:
                 template: '@BitBagSyliusPrzelewy24Plugin/Admin/payment_method/form/sections/gateway_configuration/przelewy24.html.twig'
                 priority: 0
