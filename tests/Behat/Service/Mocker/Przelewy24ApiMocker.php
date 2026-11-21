@@ -12,7 +12,6 @@ namespace Tests\BitBag\SyliusPrzelewy24Plugin\Behat\Service\Mocker;
 
 final class Przelewy24ApiMocker
 {
-    /** The Przelewy24 bridge is replaced in the test environment by a fake that always verifies successfully. */
     public function mockApiSuccessfulVerifyTransaction(callable $action): void
     {
         $action();

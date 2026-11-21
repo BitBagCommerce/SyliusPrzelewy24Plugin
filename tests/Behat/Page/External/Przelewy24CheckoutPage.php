@@ -97,8 +97,6 @@ final class Przelewy24CheckoutPage extends Page implements Przelewy24CheckoutPag
 
     private function getSessionId(TokenInterface $token): string
     {
-        // The payment was updated by the application kernel, so read the details straight from the database
-        // instead of the entity cached in this kernel's entity manager.
         $details = $this->paymentRepository->createQueryBuilder('o')
             ->select('o.details')
             ->andWhere('o.id = :id')
