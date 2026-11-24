@@ -1,5 +1,5 @@
 imports:
-    - vendor/sylius/sylius/src/Sylius/Behat/Resources/config/suites.yml
+    - vendor/sylius/sylius/src/Sylius/Behat/Resources/config/suites.php
     - tests/Behat/Resources/suites.yml
 
 default:
@@ -29,30 +29,12 @@ default:
                     chrome:
                         api_url: http://127.0.0.1:9222
                         validate_certificate: false
-                chrome:
-                    selenium2:
-                        browser: chrome
-                        capabilities:
-                            browserName: chrome
-                            browser: chrome
-                            version: ""
-                            marionette: null # https://github.com/Behat/MinkExtension/pull/311
-                            chrome:
-                                switches:
-                                    - "start-fullscreen"
-                                    - "start-maximized"
-                                    - "no-sandbox"
-                            extra_capabilities:
-                                unexpectedAlertBehaviour: accept
-                firefox:
-                    selenium2:
-                        browser: firefox
             show_auto: false
 
         FriendsOfBehat\SymfonyExtension:
-            bootstrap: tests/Application/config/bootstrap.php
+            bootstrap: vendor/sylius/test-application/config/bootstrap.php
             kernel:
-                class: Tests\BitBag\SyliusPrzelewy24Plugin\TestApplication\Kernel
+                class: Sylius\TestApplication\Kernel
 
         FriendsOfBehat\VariadicExtension: ~
 

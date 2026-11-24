@@ -5,5 +5,9 @@ services:
     bitbag_sylius_przelewy24_plugin.mocker.przelewy24_api:
         class: Tests\BitBag\SyliusPrzelewy24Plugin\Behat\Service\Mocker\Przelewy24ApiMocker
         public: true
+
+    bitbag_sylius_przelewy24_plugin.behat.bridge.przelewy24:
+        class: Tests\BitBag\SyliusPrzelewy24Plugin\Behat\Service\Mocker\Przelewy24Bridge
+        decorates: bitbag_sylius_przelewy24_plugin.bridge.przelewy24
         arguments:
-            - "@sylius.behat.mocker"
+            - "@.inner"

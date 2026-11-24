@@ -79,4 +79,31 @@ final class Przelewy24CheckoutContext implements Context
             $this->przelewy24CheckoutPage->failedPayment();
         });
     }
+
+    /**
+     * @Then I should be notified that my payment has been completed
+     */
+    public function iShouldBeNotifiedThatMyPaymentHasBeenCompleted(): void
+    {
+        $this->assertNotification('Payment has been completed.');
+    }
+
+    /**
+     * @Then I should be notified that my payment has been cancelled
+     */
+    public function iShouldBeNotifiedThatMyPaymentHasBeenCancelled(): void
+    {
+        $this->assertNotification('Payment has been cancelled.');
+    }
+
+    private function assertNotification(string $expectedNotification): void
+    {
+        foreach ($this->orderDetails->getNotifications() as $notification) {
+            if (str_contains($notification, $expectedNotification)) {
+                return;
+            }
+        }
+
+        throw new \RuntimeException(sprintf('There is no notification with "%s".', $expectedNotification));
+    }
 }

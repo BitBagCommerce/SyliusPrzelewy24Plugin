@@ -16,7 +16,6 @@ use FriendsOfBehat\PageObjectExtension\Page\Page;
 use FriendsOfBehat\SymfonyExtension\Mink\MinkParameters;
 use Payum\Core\Security\TokenInterface;
 use Sylius\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository;
-use Sylius\Component\Core\Model\PaymentInterface;
 use Sylius\Component\Resource\Repository\RepositoryInterface;
 use Symfony\Component\BrowserKit\AbstractBrowser;
 use Tests\BitBag\SyliusPrzelewy24Plugin\Behat\Service\Mocker\Przelewy24ApiMocker;
@@ -98,9 +97,14 @@ final class Przelewy24CheckoutPage extends Page implements Przelewy24CheckoutPag
 
     private function getSessionId(TokenInterface $token): string
     {
-        /** @var PaymentInterface $payment */
-        $payment = $this->paymentRepository->find($token->getDetails()->getId());
+        $details = $this->paymentRepository->createQueryBuilder('o')
+            ->select('o.details')
+            ->andWhere('o.id = :id')
+            ->setParameter('id', $token->getDetails()->getId())
+            ->getQuery()
+            ->getSingleScalarResult()
+        ;
 
-        return $payment->getDetails()['p24_session_id'];
+        return (is_array($details) ? $details : json_decode((string) $details, true))['p24_session_id'];
     }
 }
